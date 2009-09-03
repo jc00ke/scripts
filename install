@@ -20,7 +20,7 @@ alias l=\"ls -lah\"
 alias up!=\"update && upgrade\"
 
 alias gemi=\"sudo gem install --no-rdoc --no-ri\"
-alias gemi=\"sudo gem uninstall\"
+alias gemu=\"sudo gem uninstall\"
 alias gemup=\"sudo gem update\"
 alias gemup!=\"sudo gem update --system\"
 

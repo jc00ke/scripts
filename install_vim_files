@@ -1,0 +1,44 @@
+#!/bin/bash
+
+SOURCES="/home/`whoami`/sources"
+
+if [ -e /usr/local/bin/git ]  # Will the real "root" please stand up?
+then
+  echo "Proceed..."
+else
+  echo "You need git. Try running install_git"
+  exit 0
+fi
+
+if [ -d $SOURCES ]
+then
+  cd $SOURCES
+else
+  mkdir $SOURCES
+  cd $SOURCES
+fi
+
+if [ -d ~/.vim ]
+then
+  echo ".vim folder exists"
+else
+  mkdir -p ~/.vim/{autoload,doc,indent,ftdetect,ftplugin,plugin,syntax}
+fi
+
+# get Tim Pope's vim stuff
+
+# Vim Rails
+git clone git://github.com/tpope/vim-rails.git
+cp vim-rails/autoload/rails.vim ~/.vim/autoload/
+cp vim-rails/plugin/rails.vim ~/.vim/plugin/
+cp vim-rails/doc/rails.txt ~/.vim/doc/
+
+
+# Vim Haml
+git clone git://github.com/tpope/vim-haml.git
+
+# Vim Git
+git clone git://github.com/tpope/vim-git.git
+
+# Vim Cucumber
+git clone git://github.com/tpope/vim-cucumber.git
