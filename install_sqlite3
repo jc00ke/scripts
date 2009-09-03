@@ -1,0 +1,23 @@
+#!/bin/bash
+
+VERSION="3.6.17"
+PACKAGE="sqlite-amalgamation-$VERSION"
+SOURCES="/home/`whoami`/sources"
+
+if [ -d $SOURCES ]
+then
+  cd $SOURCES
+else
+  mkdir $SOURCES
+  cd $SOURCES
+fi
+
+sudo apt-get install libsqlite3-dev
+
+wget http://www.sqlite.org/$PACKAGE.tar.gz 
+tar xzf $PACKAGE.tar.gz
+
+cd sqlite-$VERSION/
+./configure && make && sudo make install
+
+sudo gem install --no-rdoc --no-ri sqlite3-ruby
