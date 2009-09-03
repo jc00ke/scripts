@@ -19,3 +19,17 @@ tar xzf apache-couchdb-$VERSION.tar.gz
 
 cd apache-couchdb-$VERSION/
 ./configure && make && sudo make install
+
+
+sudo adduser --system --home /usr/local/var/lib/couchdb --no-create-home \
+            --shell /bin/bash --group --gecos "CouchDB Administrator" couchdb
+
+sudo chown -R couchdb:couchdb /usr/local/etc/couchdb
+sudo chown -R couchdb:couchdb /usr/local/var/lib/couchdb
+sudo chown -R couchdb:couchdb /usr/local/var/log/couchdb
+sudo chown -R couchdb:couchdb /usr/local/var/run/couchdb
+
+sudo chmod -R 0770 /usr/local/etc/couchdb
+sudo chmod -R 0770 /usr/local/var/lib/couchdb
+sudo chmod -R 0770 /usr/local/var/log/couchdb
+sudo chmod -R 0770 /usr/local/var/run/couchdb
