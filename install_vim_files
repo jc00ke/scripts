@@ -18,21 +18,12 @@ else
   cd $SOURCES
 fi
 
-if [ -d ~/.vim ]
-then
-  echo ".vim folder exists"
-else
-  mkdir -p ~/.vim/{autoload,doc,indent,ftdetect,ftplugin,plugin,syntax}
-fi
+mkdir -p ~/.vim/{autoload,doc,indent,ftdetect,ftplugin,plugin,syntax}
 
 # get Tim Pope's vim stuff
 
 # Vim Rails
 git clone git://github.com/tpope/vim-rails.git
-cp vim-rails/autoload/rails.vim ~/.vim/autoload/
-cp vim-rails/plugin/rails.vim ~/.vim/plugin/
-cp vim-rails/doc/rails.txt ~/.vim/doc/
-
 
 # Vim Haml
 git clone git://github.com/tpope/vim-haml.git
@@ -42,3 +33,5 @@ git clone git://github.com/tpope/vim-git.git
 
 # Vim Cucumber
 git clone git://github.com/tpope/vim-cucumber.git
+
+cp -r vim-*/* ~/.vim
