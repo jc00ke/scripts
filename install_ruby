@@ -3,14 +3,6 @@
 VERSION="ruby-1.9.1-p243"
 SOURCES="/home/jesse/sources"
 
-if [ "$UID" -eq 0 ]  # Will the real "root" please stand up?
-then
-  echo "Proceed..."
-else
-  echo "You need to be root to run this script. try sudo"
-  exit 0
-fi
-
 if [ -d $SOURCES ]
 then
   cd $SOURCES
@@ -25,5 +17,10 @@ tar xzf $VERSION.tar.gz
 sudo chown -R jesse:jesse $VERSION*
 
 cd $VERSION/
-./configure
+echo "build..."
+./configure && make && sudo make install
+
+echo "build openssl correctly"
+cd ext/openssl
+sudo ruby extconf.rb
 make && sudo make install
