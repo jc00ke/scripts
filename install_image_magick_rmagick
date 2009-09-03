@@ -1,0 +1,63 @@
+#!/bin/bash
+
+SOURCES="/home/jesse/sources"
+
+if [ "$UID" -eq 0 ]  # Will the real "root" please stand up?
+then
+  echo "Proceed..."
+else
+  echo "You need to be root to run this script. try sudo"
+  exit 0
+fi
+
+if [ -d $SOURCES ]
+then
+  cd $SOURCES
+else
+  mkdir $SOURCES
+  cd $SOURCES
+fi
+
+sudo apt-get remove imagemagick
+sudo apt-get install libjpeg62-dev
+
+IMVERSION="6.5.4"
+IMAGEMAGICK="ImageMagick-$IMVERSION-10"
+wget http://downloads.sourceforge.net/project/imagemagick/ImageMagick/00-$IMVERSION/$IMAGEMAGICK.tar.gz 
+
+FTVERSION="2.3.9"
+FREETYPE="freetype-$FTVERSION"
+wget http://downloads.sourceforge.net/project/freetype/freetype2/$FTVERSION/$FREETYPE.tar.gz
+
+JPEG="jpegsrc.v7"
+wget http://www.ijg.org/files/$JPEG.tar.gz
+
+PNG="libpng-1.2.39"
+wget http://prdownloads.sourceforge.net/libpng/$PNG.tar.gz?download
+
+tar xzf $IMAGEMAGICK.tar.gz
+tar xvf $FREETYPE
+tar xvf $JPEG.tar.gz
+tar xvf $PNG.tar.gz
+
+sudo chown -R jesse:jesse ImageM* freetype* jpeg* libpng*
+
+cd $FREETYPE
+./configure
+make && sudo make install
+
+cd ../$JPEG
+./configure
+make && sudo make install
+
+cd ../$PNG
+./configure
+make && sudo make install
+
+cd ../$IMAGEMAGICK
+./configure --disable-static --with-modules --without-perl \
+     --without-magick-plus-plus --with-quantum-depth=8 \
+     --with-gs-font-dir=$FONTS
+make && sudo make install
+
+sudo gem install --no-rdoc --no-ri rmagick

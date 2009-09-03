@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [ "$UID" -eq 0 ]  # Will the real "root" please stand up?
+then
+  echo "Proceed..."
+else
+  echo "You need to be root to run this script. try sudo"
+  exit 0
+fi
+
+# Add Aptitude sources
+
+echo "Adding the repos to /etc/apt/sources.list"
+echo "
+# Tor
+deb     http://mirror.noreply.org/pub/tor jaunty main
+deb-src http://mirror.noreply.org/pub/tor jaunty main
+" >> /etc/apt/sources.list
+
+# Add keys
+gpg --keyserver subkeys.pgp.net --recv 94C09C7F
+gpg --fingerprint 94C09C7F
+gpg --export 94C09C7F | sudo apt-key add -
+
+apt-get update
+apt-get install tor tor-geoipdb

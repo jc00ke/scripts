@@ -1,0 +1,29 @@
+#!/bin/bash
+
+VERSION="ruby-1.9.1-p243"
+SOURCES="/home/jesse/sources"
+
+if [ "$UID" -eq 0 ]  # Will the real "root" please stand up?
+then
+  echo "Proceed..."
+else
+  echo "You need to be root to run this script. try sudo"
+  exit 0
+fi
+
+if [ -d $SOURCES ]
+then
+  cd $SOURCES
+else
+  mkdir $SOURCES
+  cd $SOURCES
+fi
+
+wget ftp://ftp.ruby-lang.org/pub/ruby/1.9/$VERSION.tar.gz
+tar xzf $VERSION.tar.gz
+
+sudo chown -R jesse:jesse $VERSION*
+
+cd $VERSION/
+./configure
+make && sudo make install

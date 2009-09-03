@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo apt-get install libfreeimage3 libfreeimage-dev
+sudo gem install --no-rdoc --no-ri RubyInline image_science
