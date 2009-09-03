@@ -1,0 +1,111 @@
+#!/bin/bash
+
+if [ "$UID" -eq 0 ]  # Will the real "root" please stand up?
+then
+  echo "Proceed..."
+else
+  echo "You need to be root to run this script. try sudo"
+  exit 0
+fi
+
+# Add .bash_aliases
+echo "Adding commands to .bash_alias"
+echo "
+alias free=\"free -m\"
+alias update=\"sudo aptitude update\"
+alias install=\"sudo aptitude install\"
+alias upgrade=\"sudo aptitude safe-upgrade\"
+alias remove=\"sudo aptitude remove\"
+alias l=\"ls -lah\"
+alias up!=\"update && upgrade\"
+
+alias gemi=\"sudo gem install --no-rdoc --no-ri\"
+alias gemi=\"sudo gem uninstall\"
+alias gemup=\"sudo gem update\"
+alias gemup!=\"sudo gem update --system\"
+
+this() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+}
+
+alias up=\"git push origin \`this\`\"
+alias uph=\"git push heroku \`this\`\"
+
+" > ~/.bash_aliases
+
+chown jesse:jesse ~/.bash_aliases
+
+
+# enable .bash_aliases in .bashrc
+echo "Enabling .bash_alias in .bashrc"
+sed -i '73,75 s/#//' ~/.bashrc
+
+# change prompt color
+echo "Enabling nice color support in the command prompt"
+echo "
+#Custom colors
+export PS1='\[\033[0;32m\]\h\[\033[0;36m\] \w\[\033[00m\]: '" >> ~/.bashrc
+
+echo "Reloading .bashrc"
+source ~/.bashrc
+
+# Add Aptitude sources
+
+echo "Adding the repos to /etc/apt/sources.list"
+echo "
+# Google repository
+deb http://dl.google.com/linux/deb/ stable non-free
+
+# Google testing repository
+deb http://dl.google.com/linux/deb/ testing non-free
+
+#Google Chrome
+deb http://ppa.launchpad.net/chromium-daily/ppa/ubuntu jaunty main
+deb-src http://ppa.launchpad.net/chromium-daily/ppa/ubuntu jaunty main
+
+#Shutter screencap tool
+deb http://ppa.launchpad.net/shutter/ppa/ubuntu jaunty main
+deb-src http://ppa.launchpad.net/shutter/ppa/ubuntu jaunty main
+
+#vlc
+deb http://ppa.launchpad.net/c-korn/vlc/ubuntu jaunty main
+deb-src http://ppa.launchpad.net/c-korn/vlc/ubuntu jaunty main
+
+#Gnome Do
+deb http://ppa.launchpad.net/do-core/ppa/ubuntu jaunty main
+deb-src http://ppa.launchpad.net/do-core/ppa/ubuntu jaunty main
+" >> /etc/apt/sources.list
+
+# Add keys
+
+#Gnome Do
+# A5D19FDCAA6ABB440CD3464628A8205077558DD0
+
+#Shutter
+# 5017d4931d0acade295b68adfc6d7d9d009ed615
+
+#Chromium
+# fbef0d696de1c72ba5a835fe5a9bf3bb4e5e17b5
+
+#VLC
+# 15346b12eaff594dace39b55d739676f7613768d
+
+
+#gpg --no-default-keyring --keyring /tmp/tmp_package.keyring --keyserver keyserver.ubuntu.com --recv ***
+#gpg --no-default-keyring --keyring /tmp/tmp_package.keyring --export --armor  *** | sudo apt-key add -
+#rm /tmp/tmp_package.keyring
+
+echo "Adding the PPA keys"
+for i in A5D19FDCAA6ABB440CD3464628A8205077558DD0 5017d4931d0acade295b68adfc6d7d9d009ed615 fbef0d696de1c72ba5a835fe5a9bf3bb4e5e17b5 15346b12eaff594dace39b55d739676f7613768d;
+do
+        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $i
+done
+
+# Google Repo Setup
+echo "Getting Google's linux signing key"
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+
+# Install software
+echo "Installing the software"
+apt-get update
+apt-get install build-essential vim-full vlc vlc-plugin-esd mozilla-plugin-vlc gnome-do shutter chromium-browser sound-juicer gstreamer0.10-plugins-ugly-multiverse filezilla flashplugin-nonfree zlib1g-dev
