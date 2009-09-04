@@ -75,6 +75,10 @@ deb-src http://ppa.launchpad.net/c-korn/vlc/ubuntu jaunty main
 #Gnome Do
 deb http://ppa.launchpad.net/do-core/ppa/ubuntu jaunty main
 deb-src http://ppa.launchpad.net/do-core/ppa/ubuntu jaunty main
+
+#Geany
+deb http://ppa.launchpad.net/geany-dev/ppa/ubuntu jaunty main 
+deb-src http://ppa.launchpad.net/geany-dev/ppa/ubuntu jaunty main
 " >> /etc/apt/sources.list
 
 # Add keys
@@ -91,13 +95,15 @@ deb-src http://ppa.launchpad.net/do-core/ppa/ubuntu jaunty main
 #VLC
 # 15346b12eaff594dace39b55d739676f7613768d
 
+#Geany
+# 3A68BA40877059E65867971771240B8FB3641232
 
 #gpg --no-default-keyring --keyring /tmp/tmp_package.keyring --keyserver keyserver.ubuntu.com --recv ***
 #gpg --no-default-keyring --keyring /tmp/tmp_package.keyring --export --armor  *** | sudo apt-key add -
 #rm /tmp/tmp_package.keyring
 
 echo "Adding the PPA keys"
-for i in A5D19FDCAA6ABB440CD3464628A8205077558DD0 5017d4931d0acade295b68adfc6d7d9d009ed615 fbef0d696de1c72ba5a835fe5a9bf3bb4e5e17b5 15346b12eaff594dace39b55d739676f7613768d;
+for i in A5D19FDCAA6ABB440CD3464628A8205077558DD0 5017d4931d0acade295b68adfc6d7d9d009ed615 fbef0d696de1c72ba5a835fe5a9bf3bb4e5e17b5 15346b12eaff594dace39b55d739676f7613768d 3A68BA40877059E65867971771240B8FB3641232;
 do
         sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $i
 done
@@ -109,4 +115,4 @@ wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
 # Install software
 echo "Installing the software"
 apt-get update
-apt-get install build-essential vim-full vlc vlc-plugin-esd mozilla-plugin-vlc gnome-do shutter chromium-browser sound-juicer gstreamer0.10-plugins-ugly-multiverse filezilla flashplugin-nonfree zlib1g-dev
+apt-get install build-essential vim-full vlc vlc-plugin-esd mozilla-plugin-vlc gnome-do shutter chromium-browser sound-juicer gstreamer0.10-plugins-ugly-multiverse filezilla flashplugin-nonfree zlib1g-dev geany
