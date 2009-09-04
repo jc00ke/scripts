@@ -29,6 +29,7 @@ this() {
 }
 
 alias up=\"git push origin \`this\`\"
+alias down=\"git pull origin \`this\`\"
 alias uph=\"git push heroku \`this\`\"
 
 " > ~/.bash_aliases
