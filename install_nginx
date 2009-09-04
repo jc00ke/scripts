@@ -29,3 +29,52 @@ echo "Adding init script"
 sudo cp /home/$user/scripts/nginx_init_script /etc/init.d/nginx
 sudo chmod +x /etc/init.d/nginx
 sudo /usr/sbin/update-rc.d -f nginx defaults
+
+echo "Debian-style directory layout"
+sudo mkdir /usr/local/nginx/sites-available
+sudo mkdir /usr/local/nginx/sites-enabled
+sudo mv /usr/local/nginx/conf/nginx.conf /usr/local/nginx/conf/nginx.conf.bak
+sudo echo "user www-data;
+worker_processes  1;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    sendfile        on;
+
+    keepalive_timeout  65;
+
+    gzip  on;
+
+    include /usr/local/nginx/sites-enabled/*;
+
+}" > /usr/local/nginx/conf/nginx.conf
+
+echo "Adding default site"
+sudo echo "server {
+    listen       80;
+    server_name  localhost;
+
+    location / {
+        root   html;
+        index  index.html index.htm;
+    }
+
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   html;
+    }
+
+}" > /usr/local/nginx/sites-available/default
+
+sudo ln -s /usr/local/nginx/sites-available/default /usr/local/nginx/sites-enabled/default
+
+sudo /etc/init.d/nginx start
