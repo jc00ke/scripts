@@ -1,0 +1,31 @@
+#!/bin/bash
+
+PACKAGE="nginx-0.7.61"
+USER="`whoami`"
+SOURCES="/home/$USER/sources"
+
+if [ -d $SOURCES ]
+then
+  cd $SOURCES
+else
+  mkdir $SOURCES
+  cd $SOURCES
+fi
+
+wget http://sysoev.ru/nginx/$PACKAGE.tar.gz
+tar xzf $PACKAGE.tar.gz
+
+echo "Installing dependencies"
+sudo aptitude install libc6 libpcre3 libpcre3-dev libpcrecpp0 libssl0.9.8 libssl-dev zlib1g zlib1g-dev lsb-base
+
+
+
+cd $PACKAGE/
+echo "build..."
+./configure --sbin-path=/usr/local/sbin --with-http_ssl_module
+make && sudo make install
+
+echo "Adding init script"
+sudo cp /home/$user/scripts/nginx_init_script /etc/init.d/nginx
+sudo chmod +x /etc/init.d/nginx
+sudo /usr/sbin/update-rc.d -f nginx defaults
