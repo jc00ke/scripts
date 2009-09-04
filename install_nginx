@@ -26,7 +26,7 @@ echo "build..."
 make && sudo make install
 
 echo "Adding init script"
-sudo cp /home/$user/scripts/nginx_init_script /etc/init.d/nginx
+sudo cp /home/$USER/scripts/nginx_init_script /etc/init.d/nginx
 sudo chmod +x /etc/init.d/nginx
 sudo /usr/sbin/update-rc.d -f nginx defaults
 
@@ -53,7 +53,8 @@ http {
 
     include /usr/local/nginx/sites-enabled/*;
 
-}" > /usr/local/nginx/conf/nginx.conf
+}" > /tmp/nginx.conf
+sudo mv /tmp/nginx.conf /usr/local/nginx/conf/
 
 echo "Adding default site"
 sudo echo "server {
@@ -73,7 +74,8 @@ sudo echo "server {
         root   html;
     }
 
-}" > /usr/local/nginx/sites-available/default
+}" > /tmp/default
+sudo mv /tmp/default /usr/local/nginx/sites-available/
 
 sudo ln -s /usr/local/nginx/sites-available/default /usr/local/nginx/sites-enabled/default
 
