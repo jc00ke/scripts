@@ -44,8 +44,11 @@ sed -i '73,75 s/#//' ~/.bashrc
 # change prompt color
 echo "Enabling nice color support in the command prompt"
 echo "
+#Git auto-completion & branch name
+source ~/scripts/git-completion.sh
+
 #Custom colors
-export PS1='\[\033[0;32m\]\h\[\033[0;36m\] \w\[\033[00m\]: '" >> ~/.bashrc
+export PS1='\[\033[0;32m\]\h\[\033[0;36m\] \W$(__git_ps1 " (%s)"): '" >> ~/.bashrc
 
 echo "Reloading .bashrc"
 source ~/.bashrc
