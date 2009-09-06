@@ -48,7 +48,8 @@ echo "
 source ~/scripts/git-completion.sh
 
 #Custom colors
-export PS1='\[\033[0;32m\]\h\[\033[0;36m\] \W$(__git_ps1 " (%s)"): '" >> ~/.bashrc
+export PS1='\[\033[0;32m\]\h \[\033[1;36m\]\w\[\033[0;34m\]$(__git_ps1 " (%s)") \[\033[00m\]: '
+" >> ~/.bashrc
 
 echo "Reloading .bashrc"
 source ~/.bashrc
