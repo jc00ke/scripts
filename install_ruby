@@ -14,8 +14,6 @@ fi
 wget ftp://ftp.ruby-lang.org/pub/ruby/1.9/$VERSION.tar.gz
 tar xzf $VERSION.tar.gz
 
-sudo chown -R jesse:jesse $VERSION*
-
 cd $VERSION/
 echo "build..."
 ./configure && make && sudo make install

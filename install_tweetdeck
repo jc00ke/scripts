@@ -1,36 +1,24 @@
 #!/bin/bash
 
-if [ "$UID" -eq 0 ]  # Will the real "root" please stand up?
-then
-  echo "Proceed..."
-else
-  echo "You need to be root to run this script. try sudo"
-  exit 0
-fi
-
 wget http://frozenfox.freehostia.com/cappy/getlibs-all.deb
-dpkg -i getlibs-all.deb
+sudo dpkg -i getlibs-all.deb
 rm !$
 
 install lib32asound2 lib32gcc1 lib32ncurses5 lib32stdc++6 lib32z1 libc6 libc6-i386 lib32nss-mdns
 
-getlibs -l libnss3.so.1d
-getlibs -l libnssutil3.so.1d
-getlibs -l libsmime3.so.1d
-getlibs -l libssl3.so.1d
-getlibs -l libnspr4.so.0d
-getlibs -l libplc4.so.0d
-getlibs -l libplds4.so.0d
-getlibs -l libgnome-keyring.so
-getlibs -l libgnome-keyring.so.0
-getlibs -l libgnome-keyring.so.0.1.1
+packages=( libnss3.so.1d libnssutil3.so.1d libsmime3.so.1d libssl3.so.1d libnspr4.so.0d libplc4.so.0d libplds4.so.0d libgnome-keyring.so libgnome-keyring.so.0 libgnome-keyring.so.0.1.1 )
+
+for p in ${packages[@]}
+do
+	sudo getlibs -l $p
+done
 
 wget http://airdownload.adobe.com/air/lin/download/latest/AdobeAIRInstaller.bin
 chmod +x AdoveAIRInstaller.bin
 ./AdobeAIRInstaller.bin
 echo "Remove installer when done."
 
-cp /usr/lib/libadobecertstore.so /usr/lib32
-ldconfig
+sudo cp /usr/lib/libadobecertstore.so /usr/lib32
+sudo ldconfig
 
 firefox http://tweetdeck.com

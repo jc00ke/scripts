@@ -2,7 +2,7 @@
 
 SOURCES="/home/`whoami`/sources"
 
-if [ -e /usr/local/bin/git ]  # Will the real "root" please stand up?
+if [ -e /usr/local/bin/git ] 
 then
   echo "Proceed..."
 else
