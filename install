@@ -1,13 +1,5 @@
 #!/bin/bash
 
-if [ "$UID" -eq 0 ]  # Will the real "root" please stand up?
-then
-  echo "Proceed..."
-else
-  echo "You need to be root to run this script. try sudo"
-  exit 0
-fi
-
 # Add .bash_aliases
 echo "Adding commands to .bash_alias"
 echo "
@@ -34,8 +26,6 @@ alias uph=\"git push heroku \`this\`\"
 
 " > ~/.bash_aliases
 
-chown jesse:jesse ~/.bash_aliases
-
 
 # enable .bash_aliases in .bashrc
 echo "Enabling .bash_alias in .bashrc"
@@ -56,34 +46,27 @@ source ~/.bashrc
 
 # Add Aptitude sources
 
-echo "Adding the repos to /etc/apt/sources.list"
-echo "
-# Google repository
+echo "Adding the repos to /etc/apt/sources.list.d/"
+sudo sh -c 'echo "# Google repository
 deb http://dl.google.com/linux/deb/ stable non-free
 
 # Google testing repository
-deb http://dl.google.com/linux/deb/ testing non-free
+deb http://dl.google.com/linux/deb/ testing non-free" > /etc/apt/sources.list.d/google.list'
 
-#Google Chrome
-deb http://ppa.launchpad.net/chromium-daily/ppa/ubuntu jaunty main
-deb-src http://ppa.launchpad.net/chromium-daily/ppa/ubuntu jaunty main
+sudo sh -c 'echo "deb http://ppa.launchpad.net/chromium-daily/ppa/ubuntu jaunty main
+deb-src http://ppa.launchpad.net/chromium-daily/ppa/ubuntu jaunty main" > /etc/apt/sources.list.d/chromium.list'
 
-#Shutter screencap tool
-deb http://ppa.launchpad.net/shutter/ppa/ubuntu jaunty main
-deb-src http://ppa.launchpad.net/shutter/ppa/ubuntu jaunty main
+sudo sh -c 'echo "deb http://ppa.launchpad.net/shutter/ppa/ubuntu jaunty main
+deb-src http://ppa.launchpad.net/shutter/ppa/ubuntu jaunty main" > /etc/apt/sources.list.d/shutter.list'
 
-#vlc
-deb http://ppa.launchpad.net/c-korn/vlc/ubuntu jaunty main
-deb-src http://ppa.launchpad.net/c-korn/vlc/ubuntu jaunty main
+sudo sh -c 'echo "deb http://ppa.launchpad.net/c-korn/vlc/ubuntu jaunty main
+deb-src http://ppa.launchpad.net/c-korn/vlc/ubuntu jaunty main" > /etc/apt/sources.list.d/vlc.list'
 
-#Gnome Do
-deb http://ppa.launchpad.net/do-core/ppa/ubuntu jaunty main
-deb-src http://ppa.launchpad.net/do-core/ppa/ubuntu jaunty main
+sudo sh -c 'echo "deb http://ppa.launchpad.net/do-core/ppa/ubuntu jaunty main
+deb-src http://ppa.launchpad.net/do-core/ppa/ubuntu jaunty main" > /etc/apt/sources.list.d/gnome-do.list'
 
-#Geany
-deb http://ppa.launchpad.net/geany-dev/ppa/ubuntu jaunty main 
-deb-src http://ppa.launchpad.net/geany-dev/ppa/ubuntu jaunty main
-" >> /etc/apt/sources.list
+sudo sh -c 'echo "deb http://ppa.launchpad.net/geany-dev/ppa/ubuntu jaunty main 
+deb-src http://ppa.launchpad.net/geany-dev/ppa/ubuntu jaunty main" > /etc/apt/sources.list.d/geany.list'
 
 # Add keys
 
@@ -102,10 +85,6 @@ deb-src http://ppa.launchpad.net/geany-dev/ppa/ubuntu jaunty main
 #Geany
 # 3A68BA40877059E65867971771240B8FB3641232
 
-#gpg --no-default-keyring --keyring /tmp/tmp_package.keyring --keyserver keyserver.ubuntu.com --recv ***
-#gpg --no-default-keyring --keyring /tmp/tmp_package.keyring --export --armor  *** | sudo apt-key add -
-#rm /tmp/tmp_package.keyring
-
 echo "Adding the PPA keys"
 for i in A5D19FDCAA6ABB440CD3464628A8205077558DD0 5017d4931d0acade295b68adfc6d7d9d009ed615 fbef0d696de1c72ba5a835fe5a9bf3bb4e5e17b5 15346b12eaff594dace39b55d739676f7613768d 3A68BA40877059E65867971771240B8FB3641232;
 do
@@ -114,9 +93,9 @@ done
 
 # Google Repo Setup
 echo "Getting Google's linux signing key"
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 
 # Install software
 echo "Installing the software"
-apt-get update
-apt-get install build-essential vim-full vlc vlc-plugin-esd mozilla-plugin-vlc gnome-do shutter chromium-browser sound-juicer gstreamer0.10-plugins-ugly-multiverse filezilla flashplugin-nonfree zlib1g-dev geany
+update
+install build-essential vim-full vlc vlc-plugin-esd mozilla-plugin-vlc gnome-do shutter chromium-browser sound-juicer gstreamer0.10-plugins-ugly-multiverse filezilla flashplugin-nonfree zlib1g-dev geany

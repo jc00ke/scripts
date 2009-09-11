@@ -1,28 +1,13 @@
 #!/bin/bash
 
-if [ "$UID" -eq 0 ]  # Will the real "root" please stand up?
-then
-  echo "Proceed..."
-else
-  echo "You need to be root to run this script. try sudo"
-  exit 0
-fi
-
-
 # Add Aptitude sources
-echo "Adding the repos to /etc/apt/sources.list"
-echo "
-
-#R statistics
-deb http://cran.wustl.edu/bin/linux/ubuntu jaunty/ 
-" >> /etc/apt/sources.list
+echo "Adding the repos to /etc/apt/sources.list.d/"
+sudo sh -c 'echo "deb http://cran.wustl.edu/bin/linux/ubuntu jaunty/" > /etc/apt/sources.list.d/r.list'
 
 gpg --keyserver subkeys.pgp.net --recv-key E2A11821
 gpg -a --export E2A11821 | sudo apt-key add -
 
-sudo chown -R jesse:jesse /home/jesse/.gnupg
-
 # Install software
 echo "Installing the software"
-apt-get update
-apt-get install r-base r-base-dev r-recommended
+update
+install r-base r-base-dev r-recommended
