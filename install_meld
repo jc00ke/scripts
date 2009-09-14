@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ -d $SOURCES ]
+then
+  cd $SOURCES
+else
+  mkdir $SOURCES
+  cd $SOURCES
+fi
+
+install intltool
+
+git clone git://git.gnome.org/meld
+cd meld/
+make
+
+echo 'alias meld="~/sources/meld/bin/meld"' >> ~/.bash_aliases
+source ~/.bashrc
