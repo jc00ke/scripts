@@ -11,19 +11,6 @@ alias remove=\"sudo aptitude remove\"
 alias l=\"ls -lah\"
 alias up!=\"update && upgrade\"
 
-alias gemi=\"sudo gem install --no-rdoc --no-ri\"
-alias gemu=\"sudo gem uninstall\"
-alias gemup=\"sudo gem update\"
-alias gemup!=\"sudo gem update --system\"
-
-this() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
-}
-
-alias up=\"git push origin \`this\`\"
-alias down=\"git pull origin \`this\`\"
-alias uph=\"git push heroku \`this\`\"
-
 " > ~/.bash_aliases
 
 
@@ -31,15 +18,6 @@ alias uph=\"git push heroku \`this\`\"
 echo "Enabling .bash_alias in .bashrc"
 sed -i '73,75 s/#//' ~/.bashrc
 
-# change prompt color
-echo "Enabling nice color support in the command prompt"
-echo "
-#Git auto-completion & branch name
-source ~/scripts/git-completion.sh
-
-#Custom colors
-export PS1='\[\033[0;32m\]\h \[\033[1;36m\]\w\[\033[0;34m\]$(__git_ps1 " (%s)") \[\033[00m\]: '
-" >> ~/.bashrc
 
 echo "Reloading .bashrc"
 source ~/.bashrc
@@ -53,20 +31,25 @@ deb http://dl.google.com/linux/deb/ stable non-free
 # Google testing repository
 deb http://dl.google.com/linux/deb/ testing non-free" > /etc/apt/sources.list.d/google.list'
 
-sudo sh -c 'echo "deb http://ppa.launchpad.net/chromium-daily/ppa/ubuntu jaunty main
-deb-src http://ppa.launchpad.net/chromium-daily/ppa/ubuntu jaunty main" > /etc/apt/sources.list.d/chromium.list'
+sudo sh -c 'echo "deb http://ppa.launchpad.net/chromium-daily/ppa/ubuntu karmic main
+deb-src http://ppa.launchpad.net/chromium-daily/ppa/ubuntu karmic main" > /etc/apt/sources.list.d/chromium.list'
 
-sudo sh -c 'echo "deb http://ppa.launchpad.net/shutter/ppa/ubuntu jaunty main
-deb-src http://ppa.launchpad.net/shutter/ppa/ubuntu jaunty main" > /etc/apt/sources.list.d/shutter.list'
+sudo sh -c 'echo "deb http://ppa.launchpad.net/shutter/ppa/ubuntu karmic main
+deb-src http://ppa.launchpad.net/shutter/ppa/ubuntu karmic main" > /etc/apt/sources.list.d/shutter.list'
 
-sudo sh -c 'echo "deb http://ppa.launchpad.net/c-korn/vlc/ubuntu jaunty main
-deb-src http://ppa.launchpad.net/c-korn/vlc/ubuntu jaunty main" > /etc/apt/sources.list.d/vlc.list'
+sudo sh -c 'echo "deb http://ppa.launchpad.net/c-korn/vlc/ubuntu karmic main
+deb-src http://ppa.launchpad.net/c-korn/vlc/ubuntu karmic main" > /etc/apt/sources.list.d/vlc.list'
 
-sudo sh -c 'echo "deb http://ppa.launchpad.net/do-core/ppa/ubuntu jaunty main
-deb-src http://ppa.launchpad.net/do-core/ppa/ubuntu jaunty main" > /etc/apt/sources.list.d/gnome-do.list'
+sudo sh -c 'echo "deb http://ppa.launchpad.net/do-core/ppa/ubuntu karmic main
+deb-src http://ppa.launchpad.net/do-core/ppa/ubuntu karmic main" > /etc/apt/sources.list.d/gnome-do.list'
 
-sudo sh -c 'echo "deb http://ppa.launchpad.net/geany-dev/ppa/ubuntu jaunty main 
-deb-src http://ppa.launchpad.net/geany-dev/ppa/ubuntu jaunty main" > /etc/apt/sources.list.d/geany.list'
+sudo sh -c 'echo "deb http://ppa.launchpad.net/geany-dev/ppa/ubuntu karmic main 
+deb-src http://ppa.launchpad.net/geany-dev/ppa/ubuntu karmic main" > /etc/apt/sources.list.d/geany.list'
+
+sudo sh -c 'echo "deb http://mirrors.cat.pdx.edu/ubuntu/ karmic main 
+deb-src http://mirrors.cat.pdx.edu/ubuntu/ karmic main" > /etc/apt/sources.list.d/psu-mirror.list'
+
+ 
 
 # Add keys
 
@@ -97,5 +80,6 @@ wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-ke
 
 # Install software
 echo "Installing the software"
-update
-install build-essential vim-full vlc vlc-plugin-esd mozilla-plugin-vlc gnome-do shutter chromium-browser sound-juicer gstreamer0.10-plugins-ugly-multiverse filezilla flashplugin-nonfree zlib1g-dev geany
+sudo apt-get update
+sudo apt-get install build-essential vim-full vlc vlc-plugin-esd mozilla-plugin-vlc gnome-do shutter chromium-browser sound-juicer gstreamer0.10-plugins-ugly-multiverse filezilla flashplugin-nonfree geany
+
