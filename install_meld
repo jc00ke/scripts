@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SOURCES="/home/`whoami`/sources"
+
 if [ -d $SOURCES ]
 then
   cd $SOURCES
@@ -8,7 +10,7 @@ else
   cd $SOURCES
 fi
 
-install intltool
+sudo apt-get install intltool
 
 git clone git://git.gnome.org/meld
 cd meld/
