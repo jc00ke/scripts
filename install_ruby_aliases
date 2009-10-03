@@ -2,13 +2,6 @@
 
 echo "Adding commands to .bash_alias"
 echo "
-alias free=\"free -m\"
-alias update=\"sudo aptitude update\"
-alias install=\"sudo aptitude install\"
-alias upgrade=\"sudo aptitude safe-upgrade\"
-alias remove=\"sudo aptitude remove\"
-alias l=\"ls -lah\"
-alias up!=\"update && upgrade\"
 
 alias gemi=\"sudo gem install --no-rdoc --no-ri\"
 alias gemu=\"sudo gem uninstall\"
