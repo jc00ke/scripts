@@ -46,8 +46,9 @@ deb-src http://ppa.launchpad.net/do-core/ppa/ubuntu karmic main" > /etc/apt/sour
 sudo sh -c 'echo "deb http://ppa.launchpad.net/geany-dev/ppa/ubuntu karmic main 
 deb-src http://ppa.launchpad.net/geany-dev/ppa/ubuntu karmic main" > /etc/apt/sources.list.d/geany.list'
 
-sudo sh -c 'echo "deb http://mirrors.cat.pdx.edu/ubuntu/ karmic main 
-deb-src http://mirrors.cat.pdx.edu/ubuntu/ karmic main" > /etc/apt/sources.list.d/psu-mirror.list'
+sudo sh -c 'echo "
+deb http://mirrors.cat.pdx.edu/ubuntu/ karmic main 
+deb-src http://mirrors.cat.pdx.edu/ubuntu/ karmic main" >> /etc/apt/sources.list'
 
  
 
