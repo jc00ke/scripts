@@ -1,8 +1,0 @@
-#!/bin/bash
-
-cd /usr/lib/chromium-browser/plugins
-sudo ln -s ../../flashplugin-installer/libflashplayer.so
-
-echo "
-chromium-browser %U --enable-plugins --enable-greasemonkey --enable-user-scripts --enable-extensions
-"
