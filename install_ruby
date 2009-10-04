@@ -107,3 +107,38 @@ echo "export PATH=/opt/ruby/bin:\$PATH" >> ~/.bashrc
 
 echo "Reloading the shell"
 source ~/.bashrc
+
+
+
+echo "
+
+gem_cmd() {
+
+        BAD_PARAMS=91
+
+        cmd=\$1
+        case \"\$cmd\" in
+                '+')    cmd='install --no-rdoc --no-ri';;
+                '-')    cmd='uninstall';;
+                '^')    cmd='update';;
+                '^\!')   cmd='update --system';;
+        esac
+
+        if [ ! -n \"\$cmd\" ]
+        then
+                echo \"You need to specify a command and options or gem names\"
+                return \$BAD_PARAMS
+        fi
+
+        shift
+        for x in \$( find /opt -maxdepth 1 -type d -name 'ruby-*' ); do
+                sudo sh -c \"\$x/bin/gem \$cmd \$@\"
+        done
+}
+
+
+alias gem+=\"gem_cmd +\"
+alias gem-=\"gem_cmd -\"
+alias gemup=\"gem_cmd ^\"
+alias gemup!=\"gem_cmd ^!\"
+" >> ~/.bash_aliases
