@@ -19,17 +19,22 @@ fi
 
 ## Install Ruby 1.8
 #
+echo "Installing dependencies for $RUBY19"
 sudo apt-get build-dep ruby1.8
-wget -c ftp://ftp.ruby-lang.org/pub/ruby/1.8/$RUBY18.tar.gz
+echo "Downloading $RUBY18"
+wget -c ftp://ftp.ruby-lang.org/pub/ruby/1.8/$RUBY18.tar.gz > /dev/null 2>&1
 tar xzf $RUBY18.tar.gz
 cd $RUBY18/
-./configure --prefix=/opt/$RUBY18 --enable-pthread --enable-shared --enable-openssl --enable-readline --enable-zlib
-make && sudo make install
+echo "Configuring, making and installing $RUBY18"
+./configure --prefix=/opt/$RUBY18 --enable-pthread --enable-shared --enable-openssl --enable-readline --enable-zlib  > /dev/null 2>&1
+make > /dev/null 2>&1
+sudo make install > /dev/null 2>&1
 
 ## Install Rubygems for 1.8
 #
 cd $SOURCES
-wget -c http://rubyforge.org/frs/download.php/60718/$RUBYGEMS.tgz
+echo "Downloading & installing $RUBYGEMS"
+wget -c http://rubyforge.org/frs/download.php/60718/$RUBYGEMS.tgz > /dev/null 2>&1
 tar xzf $RUBYGEMS.tgz
 cd $RUBYGEMS/
 sudo /opt/$RUBY18/bin/ruby setup.rb
@@ -37,23 +42,28 @@ sudo /opt/$RUBY18/bin/ruby setup.rb
 ## Install Ruby 1.9
 #
 cd $SOURCES
+echo "Installing dependencies for $RUBY19"
 sudo apt-get build-dep ruby1.9
-wget -c ftp://ftp.ruby-lang.org/pub/ruby/1.9/$RUBY19.tar.gz
+wget -c ftp://ftp.ruby-lang.org/pub/ruby/1.9/$RUBY19.tar.gz  > /dev/null 2>&1
 tar xzf $RUBY19.tar.gz
 
 cd $RUBY19/
-./configure --prefix=/opt/$RUBY19 --enable-pthread --enable-shared
-make && sudo make install
+echo "Configuring, making and installing $RUBY19"
+./configure --prefix=/opt/$RUBY19 --enable-pthread --enable-shared > /dev/null 2>&1
+make > /dev/null 2>&1
+sudo make install > /dev/null 2>&1
 
 ## Install Ruby Enterprise Edition
 #
 cd $SOURCES
+echo "Installing $REE"
 wget -c http://rubyforge.org/frs/download.php/64475/$REE.tar.gz
 tar xzf $REE.tar.gz
-./$REE/installer
+sudo ./$REE/installer
 
-echo "
-#!/bin/sh
+
+echo "Building out the version switching script"
+echo "#!/bin/sh
 
 while : # Loop forever
 do
@@ -78,16 +88,22 @@ case \$choice in
 2) rm -rf /opt/ruby; ln -s /opt/$RUBY19 /opt/ruby;;
 3) rm -rf /opt/ruby; ln -s /opt/$REE /opt/ruby;;
 4) exit;;
-*) echo \"\"\$choice\" is not valid \"; sleep 2 ;;
+*) echo \"\\\"\$choice\" is not valid \\\"; sleep 2 ;;
 esac
 exit
 done
 " > ~/select_ruby
 
+echo "Making the switching script executable"
 chmod +x ~/select_ruby
 
-echo "alias select_ruby=\"~/select_ruby\"" >> ~/.bash_aliases
+echo "Adding the switching script to bash_aliases"
+sudo mv ~/select_ruby /usr/local/bin/
 
 ## Modify the PATH
 #
+echo "Modifying the PATH to use active version of Ruby"
 echo "export PATH=/opt/ruby/bin:\$PATH" >> ~/.bashrc
+
+echo "Reloading the shell"
+source ~/.bashrc
