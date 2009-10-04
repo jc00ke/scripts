@@ -4,6 +4,7 @@
 #
 
 RUBY18="ruby-1.8.7-p174"
+RUBYGEMS="rubygems-1.3.5"
 RUBY19="ruby-1.9.1-p243"
 REE="ruby-enterprise-1.8.7-20090928"
 SOURCES="/home/`whoami`/sources"
@@ -28,10 +29,10 @@ make && sudo make install
 ## Install Rubygems for 1.8
 #
 cd $SOURCES
-wget -c http://rubyforge.org/frs/download.php/60718/rubygems-1.3.5.tgz
-tar xzf rubygems-1.3.5
-cd rubygems-1.3.5/
-sudo /opt/$RUBY18/ruby setup.rb
+wget -c http://rubyforge.org/frs/download.php/60718/$RUBYGEMS.tgz
+tar xzf $RUBYGEMS.tgz
+cd $RUBYGEMS/
+sudo /opt/$RUBY18/bin/ruby setup.rb
 
 ## Install Ruby 1.9
 #
@@ -44,16 +45,11 @@ cd $RUBY19/
 ./configure --prefix=/opt/$RUBY19 --enable-pthread --enable-shared
 make && sudo make install
 
-#echo "build openssl correctly"
-#cd ext/openssl
-#sudo ruby extconf.rb
-#make && sudo make install
-
 ## Install Ruby Enterprise Edition
 #
 cd $SOURCES
 wget -c http://rubyforge.org/frs/download.php/64475/$REE.tar.gz
-tar xzf $REE
+tar xzf $REE.tar.gz
 ./$REE/installer
 
 echo "
