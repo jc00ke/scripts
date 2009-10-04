@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="3.6.17"
+VERSION="3.6.18"
 PACKAGE="sqlite-amalgamation-$VERSION"
 SOURCES="/home/`whoami`/sources"
 
@@ -19,5 +19,3 @@ tar xzf $PACKAGE.tar.gz
 
 cd sqlite-$VERSION/
 ./configure && make && sudo make install
-
-sudo gem install --no-rdoc --no-ri sqlite3-ruby
