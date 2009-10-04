@@ -2,36 +2,37 @@
 
 SOURCES="/home/`whoami`/sources"
 
-if [ -e /usr/local/bin/git ] 
+if [ ! -e /usr/local/bin/git ] 
 then
-  echo "Proceed..."
-else
   echo "You need git. Try running install_git"
   exit 0
 fi
 
-if [ -d $SOURCES ]
+if [ ! -d $SOURCES ]
 then
-  cd $SOURCES
-else
   mkdir $SOURCES
-  cd $SOURCES
 fi
 
+echo "Creating .vim folders if necessary"
+cd $SOURCES
 mkdir -p ~/.vim/{autoload,doc,indent,ftdetect,ftplugin,plugin,syntax}
 
-# get Tim Pope's vim stuff
+repos=(rails haml git cucumber)
 
-# Vim Rails
-git clone git://github.com/tpope/vim-rails.git
+for r in ${repos[*]}; do
+	repo="vim-$r"
+	echo "Checking $repo"
+	if [ -d "$SOURCES/$repo/" ]
+	then
+		echo "Pulling latest from $repo"
+		cd $repo
+		git pull origin master
+		cd ..
+	else
+		echo "Cloning repo for $repo"
+		git clone git://github.com/tpope/$repo.git
+	fi
+done
 
-# Vim Haml
-git clone git://github.com/tpope/vim-haml.git
-
-# Vim Git
-git clone git://github.com/tpope/vim-git.git
-
-# Vim Cucumber
-git clone git://github.com/tpope/vim-cucumber.git
-
-cp -r vim-*/* ~/.vim
+cd $SOURCES
+cp -fr vim-*/* ~/.vim
