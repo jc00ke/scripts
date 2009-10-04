@@ -35,4 +35,6 @@ for r in ${repos[*]}; do
 done
 
 cd $SOURCES
+
+echo "Copying files over to .vim dir"
 cp -fr vim-*/* ~/.vim
