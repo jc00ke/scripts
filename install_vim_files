@@ -2,7 +2,7 @@
 
 SOURCES="/home/`whoami`/sources"
 
-if [ ! -e /usr/local/bin/git ] 
+if [ ! -e `which git` ] 
 then
   echo "You need git. Try running install_git"
   exit 0
