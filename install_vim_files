@@ -1,6 +1,7 @@
 #!/bin/bash
 
-SOURCES="/home/`whoami`/sources"
+DOTVIM="/home/`whoami`/.vim"
+PATHOGEN=9394 # pathogen.vim v1.1
 
 if [ ! -e `which git` ] 
 then
@@ -8,24 +9,24 @@ then
   exit 0
 fi
 
-if [ ! -d $SOURCES ]
+if [ ! -d $DOTVIM ]
 then
-  mkdir $SOURCES
+  mkdir $DOTVIM
 fi
 
 echo "Creating .vim folders if necessary"
-cd $SOURCES
-mkdir -p ~/.vim/{autoload,doc,indent,ftdetect,ftplugin,plugin,syntax}
+cd $DOTVIM/bundle/
+mkdir -p $DOTVIM/{autoload,bundle}
 
 repos=(rails haml git cucumber)
 
 for r in ${repos[*]}; do
 	repo="vim-$r"
 	echo "Checking $repo"
-	if [ -d "$SOURCES/$repo/" ]
+	if [ -d "$DOTVIM/bundle/$repo/" ]
 	then
 		echo "Pulling latest from $repo"
-		cd $repo
+		cd $DOTVIM/bundle/$repo
 		git pull origin master
 		cd ..
 	else
@@ -34,7 +35,17 @@ for r in ${repos[*]}; do
 	fi
 done
 
-cd $SOURCES
+cd $DOTVIM/autoload
+echo "Fetching latest pathogen.vim"
+rm pathogen.vim
+wget -c -O pathogen.vim http://www.vim.org/scripts/download_script.php?src_id=$PATHOGEN
 
-echo "Copying files over to .vim dir"
-cp -fr vim-*/* ~/.vim
+echo "Checking to see if pathogen has already been added to .vimrc"
+pathogen_cmd="call pathogen#runtime_append_all_bundles()"
+contains=`grep "$pathogen_cmd" ~/.vimrc | wc -l`
+
+if [ $contains == 0 ]
+then
+	echo "Hasn't been added, adding now."
+	echo "$pathogen_cmd" >> ~/.vimrc
+fi
