@@ -1,10 +1,11 @@
 #!/bin/bash
 
+cd /tmp
+
 wget http://frozenfox.freehostia.com/cappy/getlibs-all.deb
 sudo dpkg -i getlibs-all.deb
-rm !$
 
-install lib32asound2 lib32gcc1 lib32ncurses5 lib32stdc++6 lib32z1 libc6 libc6-i386 lib32nss-mdns
+sudo apt-get install lib32asound2 lib32gcc1 lib32ncurses5 lib32stdc++6 lib32z1 libc6 libc6-i386 lib32nss-mdns
 
 packages=( libnss3.so.1d libnssutil3.so.1d libsmime3.so.1d libssl3.so.1d libnspr4.so.0d libplc4.so.0d libplds4.so.0d libgnome-keyring.so libgnome-keyring.so.0 libgnome-keyring.so.0.1.1 )
 
@@ -15,7 +16,7 @@ done
 
 wget http://airdownload.adobe.com/air/lin/download/latest/AdobeAIRInstaller.bin
 chmod +x AdoveAIRInstaller.bin
-./AdobeAIRInstaller.bin
+sudo ./AdobeAIRInstaller.bin
 echo "Remove installer when done."
 
 sudo cp /usr/lib/libadobecertstore.so /usr/lib32
