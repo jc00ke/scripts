@@ -1,7 +1,7 @@
 #!/bin/bash
 
 VERSION="1.6.4.4"
-SOURCES="/home/jesse/sources"
+SOURCES="/home/`whoami`/sources"
 
 echo "Installing zlib1g-dev (dependency)"
 sudo apt-get install zlib1g-dev
