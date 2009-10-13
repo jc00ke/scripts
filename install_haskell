@@ -1,0 +1,22 @@
+#!/bin/bash
+
+VERSION="2009.2.0.2"
+HASKELL="haskell-platform-$VERSION"
+SOURCES="/home/`whoami`/sources"
+
+if [ -d $SOURCES ]
+then
+  cd $SOURCES
+else
+  mkdir $SOURCES
+  cd $SOURCES
+fi
+
+wget http://hackage.haskell.org/platform/$VERSION/$HASKELL.tar.gz
+
+tar xf $HASKELL.tar.gz
+cd $HASKELL
+
+./configure
+make
+sudo make install
