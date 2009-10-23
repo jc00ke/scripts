@@ -21,6 +21,7 @@ fi
 #
 echo "Installing dependencies for $RUBY19"
 sudo apt-get build-dep ruby1.8
+sudo apt-get install libsqlite3-ruby
 echo "Downloading $RUBY18"
 wget -c ftp://ftp.ruby-lang.org/pub/ruby/1.8/$RUBY18.tar.gz > /dev/null 2>&1
 tar xzf $RUBY18.tar.gz
@@ -143,3 +144,5 @@ alias gem-=\"gem_cmd -\"
 alias gemup=\"gem_cmd ^\"
 alias gemup!=\"gem_cmd ^!\"
 " >> ~/.bash_aliases
+
+echo "For sqlite3, you might want to gem+ sqlite3-ruby"
