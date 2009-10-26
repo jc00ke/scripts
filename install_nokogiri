@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo apt-get install libxml2-dev libxslt1-dev
+sudo gem install --no-rdoc --no-ri nokogiri
