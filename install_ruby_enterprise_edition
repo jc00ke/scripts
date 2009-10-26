@@ -1,0 +1,30 @@
+#!/bin/bash
+
+## Credit goes to Michael Greenly: http://j.mp/AjCz4
+#
+
+SOURCES="/home/`whoami`/sources"
+PAGE="http://www.rubyenterpriseedition.com/download.html"
+
+if [ -d $SOURCES ]
+then
+  cd $SOURCES
+else
+  mkdir $SOURCES
+  cd $SOURCES
+fi
+
+## Install Ruby Enterprise Edition
+#
+echo "Installing Ruby Enterprise Edition"
+package=`curl -s $PAGE | grep 'Source code' | cut -d\" -f2`
+wget -c $package
+
+download=`ls -c ruby-enterprise* | cut -d" " -f1 | head -n 1`
+name=`echo $download | sed 's/.tar.gz//'`
+
+tar xzf $download
+
+sudo ./$name/installer
+
+echo "For sqlite3, you might want to gem+ sqlite3-ruby"
