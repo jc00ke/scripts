@@ -1,8 +1,5 @@
 #!/bin/bash
 
-## Credit goes to Michael Greenly: http://j.mp/AjCz4
-#
-
 SOURCES="/home/`whoami`/sources"
 PAGE="http://www.rubyenterpriseedition.com/download.html"
 
