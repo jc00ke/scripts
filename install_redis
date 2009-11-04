@@ -11,9 +11,7 @@ else
   cd $SOURCES
 fi
 
-## Install Ruby Enterprise Edition
-#
-echo "Installing Ruby Enterprise Edition"
+echo "Installing Redis"
 package=`curl -s $PAGE | grep 'http://redis.googlecode.com/files/redis' | cut -d\" -f2`
 wget -c $package
 
