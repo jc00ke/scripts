@@ -1,6 +1,9 @@
 #!/bin/bash
 
-	echo "
+echo "
 set tabstop=4
 set shiftwidth=4
+set expandtab
+retab
+autocmd BufWritePre * :%s/\s\+$//e
 " >> ~/.vimrc
