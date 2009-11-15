@@ -6,7 +6,7 @@
 RUBY18="ruby-1.8.7-p174"
 RUBYGEMS="rubygems-1.3.5"
 RUBY19="ruby-1.9.1-p243"
-REE="ruby-enterprise-1.8.7-20090928"
+REE="ruby-enterprise-1.8.7-2009.10"
 SOURCES="/home/`whoami`/sources"
 
 if [ -d $SOURCES ]
@@ -143,6 +143,7 @@ alias gem+=\"gem_cmd +\"
 alias gem-=\"gem_cmd -\"
 alias gemup=\"gem_cmd ^\"
 alias gemup!=\"gem_cmd ^!\"
+alias irb=\"irb --readline -r irb/completion\"
 " >> ~/.bash_aliases
 
 echo "For sqlite3, you might want to gem+ sqlite3-ruby"
