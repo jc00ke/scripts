@@ -3,7 +3,7 @@
 DOTVIM="/home/`whoami`/.vim"
 PATHOGEN=9394 # pathogen.vim v1.1
 
-if [ ! -e `which git` ] 
+if [ ! -e `which git` ]
 then
   echo "You need git. Try running install_git"
   exit 0
@@ -18,7 +18,7 @@ echo "Creating .vim folders if necessary"
 cd $DOTVIM/bundle/
 mkdir -p $DOTVIM/{autoload,bundle}
 
-repos=(rails haml git cucumber fugitive)
+repos=(rails haml git cucumber fugitive vividchalk surround unimpaired abolish repeat)
 
 for r in ${repos[*]}; do
 	repo="vim-$r"
