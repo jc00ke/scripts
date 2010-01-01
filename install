@@ -44,14 +44,14 @@ deb-src http://ppa.launchpad.net/c-korn/vlc/ubuntu karmic main" > /etc/apt/sourc
 sudo sh -c 'echo "deb http://ppa.launchpad.net/do-core/ppa/ubuntu karmic main
 deb-src http://ppa.launchpad.net/do-core/ppa/ubuntu karmic main" > /etc/apt/sources.list.d/gnome-do.list'
 
-sudo sh -c 'echo "deb http://ppa.launchpad.net/geany-dev/ppa/ubuntu karmic main 
+sudo sh -c 'echo "deb http://ppa.launchpad.net/geany-dev/ppa/ubuntu karmic main
 deb-src http://ppa.launchpad.net/geany-dev/ppa/ubuntu karmic main" > /etc/apt/sources.list.d/geany.list'
 
 sudo sh -c 'echo "
-deb http://mirrors.cat.pdx.edu/ubuntu/ karmic main 
+deb http://mirrors.cat.pdx.edu/ubuntu/ karmic main
 deb-src http://mirrors.cat.pdx.edu/ubuntu/ karmic main" >> /etc/apt/sources.list'
 
- 
+
 
 # Add keys
 
@@ -83,5 +83,5 @@ wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-ke
 # Install software
 echo "Installing the software"
 sudo apt-get update
-sudo apt-get install build-essential vim-full vlc vlc-plugin-esd mozilla-plugin-vlc gnome-do shutter chromium-browser sound-juicer gstreamer0.10-plugins-ugly-multiverse filezilla flashplugin-nonfree geany gstreamer0.10-ffmpeg gstreamer0.10-plugins-ugly xclip tagtool
+sudo apt-get install build-essential vim-full vlc vlc-plugin-esd mozilla-plugin-vlc gnome-do shutter chromium-browser sound-juicer gstreamer0.10-plugins-ugly-multiverse filezilla flashplugin-nonfree geany gstreamer0.10-ffmpeg gstreamer0.10-plugins-ugly xclip tagtool ack-grep
 
