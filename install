@@ -11,7 +11,7 @@ alias upgrade=\"sudo aptitude safe-upgrade\"
 alias remove=\"sudo aptitude remove\"
 alias l=\"ls -lah\"
 alias up!=\"update && upgrade\"
-
+alias ack=\"ack-grep\"
 " > ~/.bash_aliases
 
 
