@@ -14,26 +14,34 @@ then
   mkdir $DOTVIM
 fi
 
+get_repo() {
+    repo=$1
+    gh_user=$2
+    echo "Checking $repo"
+    if [ -d "$DOTVIM/bundle/$repo/" ]
+    then
+        echo "Pulling latest from $repo"
+        cd $DOTVIM/bundle/$repo
+        git pull origin master
+        cd ..
+    else
+        echo "Cloning repo for $repo"
+        git clone git://github.com/$gh_user/$repo.git
+    fi
+}
+
 echo "Creating .vim folders if necessary"
 cd $DOTVIM/bundle/
 mkdir -p $DOTVIM/{autoload,bundle}
 
-repos=(rails haml git cucumber fugitive vividchalk surround unimpaired abolish repeat)
+tpope_repos=(rails haml git cucumber fugitive vividchalk surround unimpaired abolish repeat)
 
-for r in ${repos[*]}; do
+for r in ${tpope_repos[*]}; do
 	repo="vim-$r"
-	echo "Checking $repo"
-	if [ -d "$DOTVIM/bundle/$repo/" ]
-	then
-		echo "Pulling latest from $repo"
-		cd $DOTVIM/bundle/$repo
-		git pull origin master
-		cd ..
-	else
-		echo "Cloning repo for $repo"
-		git clone git://github.com/tpope/$repo.git
-	fi
+    get_repo $repo "tpope"
 done
+
+get_repo "nerdtree" "scrooloose"
 
 cd $DOTVIM/autoload
 echo "Fetching latest pathogen.vim"
