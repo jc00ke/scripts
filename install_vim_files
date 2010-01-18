@@ -15,8 +15,8 @@ then
 fi
 
 get_repo() {
-    repo=$1
-    gh_user=$2
+    gh_user=$1
+    repo=$2
     echo "Checking $repo"
     if [ -d "$DOTVIM/bundle/$repo/" ]
     then
@@ -38,10 +38,14 @@ tpope_repos=(rails haml git cucumber fugitive vividchalk surround unimpaired abo
 
 for r in ${tpope_repos[*]}; do
 	repo="vim-$r"
-    get_repo $repo "tpope"
+    get_repo "tpope" $repo
 done
 
-get_repo "nerdtree" "scrooloose"
+echo "Installing NERDTree"
+get_repo "scrooloose" "nerdtree"
+
+echo "Installing snipMate"
+get_repo "msanders" "snipmate.vim"
 
 cd $DOTVIM/autoload
 echo "Fetching latest pathogen.vim"
