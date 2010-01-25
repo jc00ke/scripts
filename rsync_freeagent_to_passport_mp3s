@@ -1,2 +1,0 @@
-#!/bin/bash
-rsync -a -W --force --delete --progress /media/FreeAgent/mp3s/ /media/PASSPORT/mp3s
