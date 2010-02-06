@@ -9,5 +9,5 @@ gpg -a --export E2A11821 | sudo apt-key add -
 
 # Install software
 echo "Installing the software"
-update
-install r-base r-base-dev r-recommended
+sudo apt-get update
+sudo apt-get install r-base r-base-dev r-recommended
