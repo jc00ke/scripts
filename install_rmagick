@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo apt-get install libfreetype6-dev libjpeg62-dev libpng12-dev libwmf-dev
+sudo gem install --no-rdoc --no-ri rmagick
