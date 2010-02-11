@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="1.6.4.4"
+VERSION="1.6.6.2"
 SOURCES="/home/`whoami`/sources"
 
 echo "Installing zlib1g-dev (dependency)"
@@ -21,28 +21,3 @@ tar xzf git-$VERSION.tar.gz
 cd git-$VERSION/
 ./configure
 make && sudo make install
-
-
-echo "Adding commands to .bash_alias"
-echo "
-
-this() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
-}
-
-alias up=\"git push origin \`this\`\"
-alias down=\"git pull origin \`this\`\"
-alias uph=\"git push heroku \`this\`\"
-
-" >> ~/.bash_aliases
-
-
-# change prompt color
-echo "Enabling nice color support in the command prompt"
-echo "
-#Git auto-completion & branch name
-source ~/scripts/git-completion.sh
-
-#Custom colors
-export PS1='\[\033[0;32m\]\h \[\033[1;36m\]\w\[\033[0;34m\]\$(__git_ps1 \" (%s)\") \[\033[00m\]: '
-" >> ~/.bashrc
