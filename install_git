@@ -14,10 +14,25 @@ else
   cd $SOURCES
 fi
 
-echo "Downloading git"
-wget http://kernel.org/pub/software/scm/git/git-$VERSION.tar.gz
-tar xzf git-$VERSION.tar.gz
+current_git=`git --version`
 
-cd git-$VERSION/
-./configure
-make && sudo make install
+if [ "$current_git" != "git version $VERSION" ]
+then
+
+    echo "Downloading git"
+    wget http://kernel.org/pub/software/scm/git/git-$VERSION.tar.gz
+    tar xzf git-$VERSION.tar.gz
+
+    cd git-$VERSION/
+    ./configure
+    make && sudo make install
+
+    cd ..
+    echo "Installing manpages for git"
+    wget http://www.kernel.org/pub/software/scm/git/git-manpages-$VERSION.tar.bz2
+    sudo tar xjv -C /usr/local/man -f git-manpages-$VERSION.tar.bz2
+else
+    echo "****************************************"
+    echo "You already have git version $VERSION"
+    echo "****************************************"
+fi
