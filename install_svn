@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "subversion and libsvn-perl so git svn will work."
+sudo apt-get install subversion libsvn-perl
