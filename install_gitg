@@ -1,10 +1,11 @@
 #!/bin/bash
 
-VERSION="1.6.6.2"
 SOURCES="/home/`whoami`/sources"
+VERSION="0.0.6"
 
-echo "Installing zlib1g-dev (dependency)"
-sudo apt-get install zlib1g-dev
+echo "Installing dependencies"
+sudo apt-get build-dep gitg
+
 
 if [ -d $SOURCES ]
 then
@@ -14,25 +15,10 @@ else
   cd $SOURCES
 fi
 
-current_git=`git --version`
+wget ftp://ftp.gnome.org/pub/GNOME/sources/gitg/0.0/gitg-$VERSION.tar.bz2
 
-if [ "$current_git" != "git version $VERSION" ]
-then
+tar xjf gitg-$VERSION.tar.bz2
+cd gitg-$VERSION
 
-    echo "Downloading git"
-    wget http://kernel.org/pub/software/scm/git/git-$VERSION.tar.gz
-    tar xzf git-$VERSION.tar.gz
-
-    cd git-$VERSION/
-    ./configure
-    make && sudo make install
-
-    cd ..
-    echo "Installing manpages for git"
-    wget http://www.kernel.org/pub/software/scm/git/git-manpages-$VERSION.tar.bz2
-    sudo tar xjv -C /usr/local/man -f git-manpages-$VERSION.tar.bz2
-else
-    echo "****************************************"
-    echo "You already have git version $VERSION"
-    echo "****************************************"
-fi
+./configure
+make && sudo make install
