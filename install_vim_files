@@ -34,7 +34,7 @@ echo "Creating .vim folders if necessary"
 cd $DOTVIM/bundle/
 mkdir -p $DOTVIM/{autoload,bundle}
 
-tpope_repos=(rails haml git cucumber fugitive vividchalk surround unimpaired abolish repeat)
+tpope_repos=(rails haml git cucumber fugitive vividchalk surround unimpaired abolish repeat markdown)
 
 for r in ${tpope_repos[*]}; do
 	repo="vim-$r"
