@@ -59,6 +59,9 @@ get_repo "astashov" "vim-ruby-debugger"
 echo "Installing mustache.vim"
 get_repo "jc00ke" "mustache.vim"
 
+echo "Installing ack.vim"
+get_repo "mileszs" "ack.vim"
+
 echo "Installing jQuery"
 mkdir -p jquery/syntax
 wget -c -O jquery/syntax/jquery.vim http://www.vim.org/scripts/download_script.php?src_id=$JQUERY
