@@ -23,4 +23,10 @@ tar xzf $download
 cd $name
 make
 
+echo ""
+echo ""
+echo ""
+echo ""
+echo "***************************************************************************************"
 echo "You can now just run ./redis-server or I suppose you can sudo make install if you want."
+echo "***************************************************************************************"
