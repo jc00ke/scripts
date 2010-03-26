@@ -1,14 +1,14 @@
 #!/bin/bash
 
-SOURCES="/home/`whoami`/sources"
+BIN="/home/`whoami`/bin"
 PAGE="http://code.google.com/p/redis/"
 
-if [ -d $SOURCES ]
+if [ -d $BIN ]
 then
-  cd $SOURCES
+  cd $BIN
 else
-  mkdir $SOURCES
-  cd $SOURCES
+  mkdir $BIN
+  cd $BIN
 fi
 
 echo "Installing Redis"
@@ -23,11 +23,13 @@ tar xzf $download
 cd $name
 make
 
+cd ../
+rm $download
+
 echo ""
 echo ""
 echo ""
 echo ""
 echo "***************************************************************************************"
 echo "You can now just run ./redis-server or I suppose you can sudo make install if you want."
-echo "If you don't want the dir in ~/sources then go move it."
 echo "***************************************************************************************"
