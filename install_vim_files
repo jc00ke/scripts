@@ -82,3 +82,18 @@ then
 else
 	echo "It was already added. Good to go"
 fi
+
+echo "Installing Command T plugin"
+ct=`curl -s https://wincent.com/products/command-t | grep releases | head -1 | cut -d\" -f2`
+cd /tmp
+vba=$( echo "$ct" | ruby -ruri -e 'puts File.basename(gets.chomp)' )
+wget $ct
+
+
+echo ""
+echo ""
+echo "***********************************************************"
+echo "Vim will start then follow onscreen instructions to install"
+echo "***********************************************************"
+sleep 3
+vim /tmp/$vba
