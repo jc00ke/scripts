@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd /tmp
+version="5.2.17-1ubu910"
+deb="mysql-workbench-oss-$version-amd64.deb"
+package="http://dev.mysql.com/get/Downloads/MySQLGUITools/$deb/from/http://mysql.llarian.net/"
+
+echo "Downloading MySQL Workbench"
+wget -c $package
+
+echo ""
+echo "Installing"
+sudo dpkg -i $deb
