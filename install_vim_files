@@ -59,6 +59,9 @@ get_repo "astashov" "vim-ruby-debugger"
 echo "Installing mustache.vim"
 get_repo "jc00ke" "mustache.vim"
 
+echo "Installing taglist.vim"
+get_repo "jc00ke" "taglist.vim"
+
 echo "Installing ack.vim"
 get_repo "mileszs" "ack.vim"
 
