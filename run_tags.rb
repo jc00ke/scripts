@@ -13,15 +13,14 @@ def install
     $stderr.print "The install option [-i] can only be used within a git repo; exiting.\n"
     exit 1
   end
-  
+
   HOOKS.each { |hook| install_hook("#{HOOKS_DIR}/#{hook}") }
 end
 
 def run_tags(dir, run_in_background = false)
   if File.executable?(CTAGS) and File.writable?(dir)
-    cmd = "find #{dir} -name \*.rb | #{CTAGS} -e -f #{dir}/tags -L - 2>>/dev/null "
+    cmd = "find #{dir} -name \\*.rb | #{CTAGS} -e -f #{dir}/tags -L - 2>>/dev/null "
     cmd << '&' if run_in_background
-    #$stderr.print "calling #{cmd}\n"
     system cmd
   else
     $stderr.print "FAILED to write tags file to #{dir}\n"
@@ -33,7 +32,7 @@ def install_hook(hook)
     $stderr.print "A file already exists at #{hook}, and will NOT be replaced.\n"
     return
   end
-  
+
   print "Linking #{__FILE__} to #{hook}\n"
   %x{ln -s #{__FILE__}  #{hook}}
 end
