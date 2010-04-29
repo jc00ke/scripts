@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="1.7.0.3"
+VERSION="1.7.0.6"
 SOURCES="/home/`whoami`/sources"
 
 echo "Installing zlib1g-dev (dependency)"
