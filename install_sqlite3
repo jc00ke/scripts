@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="3.6.19"
+VERSION="3.6.23.1"
 PACKAGE="sqlite-amalgamation-$VERSION"
 SOURCES="/home/`whoami`/sources"
 
@@ -14,7 +14,7 @@ fi
 
 sudo apt-get install libsqlite3-dev
 
-wget http://www.sqlite.org/$PACKAGE.tar.gz 
+wget http://www.sqlite.org/$PACKAGE.tar.gz
 tar xzf $PACKAGE.tar.gz
 
 cd sqlite-$VERSION/
