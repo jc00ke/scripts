@@ -1,28 +1,5 @@
 #!/bin/bash
 
-# Add .bash_aliases
-echo "Adding commands to .bash_alias"
-echo "
-alias sudo=\"sudo env PATH=\$PATH\"
-alias free=\"free -m\"
-alias update=\"sudo aptitude update\"
-alias install=\"sudo aptitude install\"
-alias upgrade=\"sudo aptitude safe-upgrade\"
-alias remove=\"sudo aptitude remove\"
-alias l=\"ls -lah\"
-alias up!=\"update && upgrade\"
-alias ack=\"ack-grep\"
-" > ~/.bash_aliases
-
-
-# enable .bash_aliases in .bashrc
-echo "Enabling .bash_alias in .bashrc"
-sed -i '73,75 s/#//' ~/.bashrc
-
-
-echo "Reloading .bashrc"
-source ~/.bashrc
-
 # Add Aptitude sources
 
 echo "Adding the repos to /etc/apt/sources.list.d/"
