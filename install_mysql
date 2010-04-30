@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo apt-get install mysql-server mysql-client libmysql-ruby libmysqlclient-dev
