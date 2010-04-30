@@ -1,57 +1,34 @@
 #!/bin/bash
 
 # Add Aptitude sources
-
+echo "********************************************"
 echo "Adding the repos to /etc/apt/sources.list.d/"
+echo "********************************************"
+
 sudo sh -c 'echo "# Google repository
 deb http://dl.google.com/linux/deb/ stable non-free
 
 # Google testing repository
 deb http://dl.google.com/linux/deb/ testing non-free" > /etc/apt/sources.list.d/google.list'
 
-sudo sh -c 'echo "deb http://ppa.launchpad.net/chromium-daily/ppa/ubuntu karmic main
-deb-src http://ppa.launchpad.net/chromium-daily/ppa/ubuntu karmic main" > /etc/apt/sources.list.d/chromium.list'
+sudo sh -c 'add-apt-repository ppa:chromium-daily/ppa'
 
-sudo sh -c 'echo "deb http://ppa.launchpad.net/shutter/ppa/ubuntu karmic main
-deb-src http://ppa.launchpad.net/shutter/ppa/ubuntu karmic main" > /etc/apt/sources.list.d/shutter.list'
+sudo sh -c 'add-apt-repository ppa:shutter/ppa'
 
-sudo sh -c 'echo "deb http://ppa.launchpad.net/c-korn/vlc/ubuntu karmic main
-deb-src http://ppa.launchpad.net/c-korn/vlc/ubuntu karmic main" > /etc/apt/sources.list.d/vlc.list'
+sudo sh -c 'add-apt-repository ppa:c-korn/vlc'
 
-sudo sh -c 'echo "deb http://ppa.launchpad.net/do-core/ppa/ubuntu karmic main
-deb-src http://ppa.launchpad.net/do-core/ppa/ubuntu karmic main" > /etc/apt/sources.list.d/gnome-do.list'
+sudo sh -c 'add-apt-repository ppa:geany-dev/ppa'
 
-sudo sh -c 'echo "deb http://ppa.launchpad.net/geany-dev/ppa/ubuntu karmic main
-deb-src http://ppa.launchpad.net/geany-dev/ppa/ubuntu karmic main" > /etc/apt/sources.list.d/geany.list'
-
+echo "********************************************"
+echo "Adding pdx.edu as mirror"
+echo "********************************************"
 sudo sh -c 'echo "
-deb http://mirrors.cat.pdx.edu/ubuntu/ karmic main
-deb-src http://mirrors.cat.pdx.edu/ubuntu/ karmic main" >> /etc/apt/sources.list'
+deb http://mirrors.cat.pdx.edu/ubuntu/ lucid main
+deb-src http://mirrors.cat.pdx.edu/ubuntu/ lucid main
 
+deb http://mirrors.us.kernel.org/ubuntu/ lucid main 
+deb-src http://mirrors.us.kernel.org/ubuntu/ lucid main" >> /etc/apt/sources.list'
 
-
-# Add keys
-
-#Gnome Do
-# A5D19FDCAA6ABB440CD3464628A8205077558DD0
-
-#Shutter
-# 5017d4931d0acade295b68adfc6d7d9d009ed615
-
-#Chromium
-# fbef0d696de1c72ba5a835fe5a9bf3bb4e5e17b5
-
-#VLC
-# 15346b12eaff594dace39b55d739676f7613768d
-
-#Geany
-# 3A68BA40877059E65867971771240B8FB3641232
-
-echo "Adding the PPA keys"
-for i in A5D19FDCAA6ABB440CD3464628A8205077558DD0 5017d4931d0acade295b68adfc6d7d9d009ed615 fbef0d696de1c72ba5a835fe5a9bf3bb4e5e17b5 15346b12eaff594dace39b55d739676f7613768d 3A68BA40877059E65867971771240B8FB3641232;
-do
-        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $i
-done
 
 # Google Repo Setup
 echo "Getting Google's linux signing key"
@@ -60,4 +37,7 @@ wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-ke
 # Install software
 echo "Installing the software"
 sudo apt-get update
-sudo apt-get install build-essential vim-full vlc vlc-plugin-esd mozilla-plugin-vlc gnome-do shutter chromium-browser sound-juicer gstreamer0.10-plugins-ugly-multiverse filezilla flashplugin-nonfree geany gstreamer0.10-ffmpeg gstreamer0.10-plugins-ugly xclip tagtool ack-grep pigz exuberant-ctags unison xchat sqliteman kid3-qt htop
+sudo apt-get upgrade
+sudo apt-get install build-essential vim-gnome vlc gnome-do shutter chromium-browser sound-juicer gstreamer0.10-plugins-ugly-multiverse filezilla flashplugin-nonfree geany gstreamer0.10-ffmpeg gstreamer0.10-plugins-ugly xclip tagtool pigz exuberant-ctags unison xchat sqliteman kid3-qt htop
+
+# vlc-plugin-esd mozilla-plugin-vlc 
