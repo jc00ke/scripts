@@ -16,5 +16,5 @@ git clone git://git.gnome.org/meld
 cd meld/
 make
 
-echo 'alias meld="~/sources/meld/bin/meld"' >> ~/.bash_aliases
-source ~/.bashrc
+
+ln -s ~/sources/meld/bin/meld ~/bin
