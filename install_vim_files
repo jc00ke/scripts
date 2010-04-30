@@ -96,7 +96,12 @@ wget $ct
 echo ""
 echo ""
 echo "***********************************************************"
-echo "Vim will start then follow onscreen instructions to install"
+echo "Vim will start then, then :so %"
+echo "When the script is done it'll compile the ruby extension"
 echo "***********************************************************"
 sleep 3
 vim /tmp/$vba
+sleep 3
+cd ~/.vim/ruby/command-t
+ruby extconf.rb
+make
