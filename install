@@ -38,6 +38,6 @@ wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-ke
 echo "Installing the software"
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install build-essential vim-gnome vlc gnome-do shutter chromium-browser sound-juicer gstreamer0.10-plugins-ugly-multiverse filezilla flashplugin-nonfree geany gstreamer0.10-ffmpeg gstreamer0.10-plugins-ugly xclip tagtool pigz exuberant-ctags unison xchat sqliteman kid3-qt htop
+sudo apt-get install build-essential vim-gnome vlc gnome-do shutter chromium-browser sound-juicer gstreamer0.10-plugins-ugly-multiverse filezilla flashplugin-nonfree geany gstreamer0.10-ffmpeg gstreamer0.10-plugins-ugly xclip tagtool pigz exuberant-ctags unison xchat sqliteman kid3-qt htop curl
 
 # vlc-plugin-esd mozilla-plugin-vlc 
