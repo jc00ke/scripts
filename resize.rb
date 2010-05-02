@@ -6,7 +6,7 @@
 
 require 'rubygems'
 require 'image_science'
-    
+
 source = ARGV[0]
 destination = ARGV[1]
 i = 1
@@ -24,4 +24,4 @@ images.each do |image|
 		i += 1
 	end
 
-end    
+end
