@@ -15,20 +15,22 @@ sudo sh -c 'add-apt-repository ppa:chromium-daily/ppa'
 
 sudo sh -c 'add-apt-repository ppa:shutter/ppa'
 
-sudo sh -c 'add-apt-repository ppa:c-korn/vlc'
-
 sudo sh -c 'add-apt-repository ppa:geany-dev/ppa'
 
-echo "********************************************"
-echo "Adding pdx.edu as mirror"
-echo "********************************************"
-sudo sh -c 'echo "
-deb http://mirrors.cat.pdx.edu/ubuntu/ lucid main
-deb-src http://mirrors.cat.pdx.edu/ubuntu/ lucid main
+contains_pdx=`grep "cat.pdx" /etc/apt/sources.list | wc -l`
+if [ $contains == 0 ]
+    then
+        echo "********************************************"
+        echo "Adding pdx.edu as mirror"
+        echo "********************************************"
+        sudo sh -c 'echo "
 
-deb http://mirrors.us.kernel.org/ubuntu/ lucid main
-deb-src http://mirrors.us.kernel.org/ubuntu/ lucid main" >> /etc/apt/sources.list'
+        deb http://mirrors.cat.pdx.edu/ubuntu/ lucid main
+        deb-src http://mirrors.cat.pdx.edu/ubuntu/ lucid main" >> /etc/apt/sources.list'
 
+    else
+        echo "PDX mirror is already activated. Skipping..."
+fi
 
 # Google Repo Setup
 echo "Getting Google's linux signing key"
