@@ -45,7 +45,7 @@ echo "Installing NERDTree"
 get_repo "scrooloose" "nerdtree"
 
 echo "Installing NERDCommenter"
-get_repo "scrooloose" "nerdcommenter"
+get_repo "jc00ke" "nerdcommenter"
 
 echo "Installing snipMate"
 get_repo "msanders" "snipmate.vim"
