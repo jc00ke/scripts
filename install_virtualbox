@@ -4,10 +4,10 @@
 
 echo "Adding the repos to /etc/apt/sources.list.d/"
 
-sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian karmic non-free" > /etc/apt/sources.list.d/virtualbox.list'
+sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian lucid non-free" > /etc/apt/sources.list.d/virtualbox.list'
 
 echo "Install the apt-secure key"
-wget -q http://download.virtualbox.org/virtualbox/debian/sun_vbox.asc -O- | sudo apt-key add -
+wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
 
 sudo apt-get update
 
