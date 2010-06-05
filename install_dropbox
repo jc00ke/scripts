@@ -3,8 +3,8 @@
 # Add Aptitude sources
 echo "Adding the repos to /etc/apt/sources.list.d/"
 
-sudo sh -c 'echo "deb http://linux.dropbox.com/ubuntu karmic main
-deb-src http://linux.dropbox.com/ubuntu karmic main" > /etc/apt/sources.list.d/dropbox.list'
+sudo sh -c 'echo "deb http://linux.dropbox.com/ubuntu lucid main
+deb-src http://linux.dropbox.com/ubuntu lucid main" > /etc/apt/sources.list.d/dropbox.list'
 
 # Add keys
 # This key might be needed in the future
