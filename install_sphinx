@@ -1,0 +1,19 @@
+#!/bin/bash
+
+VERSION="0.9.9"
+PACKAGE="sphinx-$VERSION"
+SOURCES="/home/`whoami`/sources"
+
+if [ -d $SOURCES ]
+then
+  cd $SOURCES
+else
+  mkdir $SOURCES
+  cd $SOURCES
+fi
+
+wget http://www.sphinxsearch.com/downloads/$PACKAGE.tar.gz
+tar xzf $PACKAGE.tar.gz
+
+cd $PACKAGE/
+./configure && make && sudo make install
