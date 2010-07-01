@@ -65,6 +65,12 @@ get_repo "jc00ke" "taglist.vim"
 echo "Installing ack.vim"
 get_repo "mileszs" "ack.vim"
 
+echo "Installing supertab"
+get_repo "tsaleh" "vim-supertab"
+
+echo "Installing vim-indent-object"
+get_repo "michaeljsmith", "vim-indent-object"
+
 echo "Installing jQuery"
 mkdir -p jquery/syntax
 wget -c -O jquery/syntax/jquery.vim http://www.vim.org/scripts/download_script.php?src_id=$JQUERY
