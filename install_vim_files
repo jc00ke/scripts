@@ -44,6 +44,9 @@ done
 echo "Installing NERDTree"
 get_repo "scrooloose" "nerdtree"
 
+echo "Installing Syntastic"
+get_repo "scrooloose" "syntastic"
+
 echo "Installing NERDCommenter"
 get_repo "jc00ke" "nerdcommenter"
 
