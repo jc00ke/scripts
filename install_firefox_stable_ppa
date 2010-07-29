@@ -1,6 +1,0 @@
-#!/bin/bash
-
-echo "subversion and libsvn-perl so git svn will work."
-sudo add-apt-repository ppa:mozillateam/firefox-stable
-sudo apt-get update
-sudo apt-get install firefox-3.6

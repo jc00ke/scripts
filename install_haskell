@@ -1,4 +1,0 @@
-#!/bin/bash
-
-echo "Installing GHC"
-sudo apt-get install ghc6 libghc6-mtl-dev libgl1-mesa-dev libgl1-mesa-dri libgl1-mesa-glx libglu1-mesa-dev freeglut3-dev libglut3-dev libghc6-gtk-dev libghc6-gtksourceview2-dev libghc6-parsec-dev libghc6-network-dev libghc6-http-dev zlib1g-dev
