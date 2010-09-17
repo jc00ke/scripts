@@ -1,6 +1,5 @@
 #!/bin/bash
 
-sudo apt-get install unzip
 if [ ! -e /usr/bin/getlibs ]
 then
     echo "Installing getlibs & libstdc++5"
@@ -11,15 +10,21 @@ then
     getlibs -i libstdc++5_3.3.6-17ubuntu1_i386.deb
 fi
 
-
-
 cd ~/Desktop
 if [ ! -e DPT-Linux.zip ]
 then
+    echo "Downloading DNS Performance Tool"
     wget http://swmirror.org/drupal/files/DPT-Linux.zip
+fi
+
+if [ ! -e /usr/bin/unzip ]
+then
+    echo "Installing unzip"
+    sudo apt-get install unzip
 fi
 if [ ! -d DPT-Linux ]
 then
+    echo "Unzipping"
     unzip DPT-Linux.zip -d DPT-Linux
 fi
 
