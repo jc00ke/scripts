@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOTVIM="/home/`whoami`/.vim"
+DOTVIM="$HOME/.vim"
 JQUERY=12107
 
 if [ ! -e `which git` ]
