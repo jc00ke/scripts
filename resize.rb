@@ -5,6 +5,11 @@
 # for file in *.cgi ; do mv $file `echo $file | sed 's/\(.*\.\)cgi/\1jpg/'` ; done
 
 require 'rubygems'
+begin
+    require 'inline'
+rescue
+    puts "You should 'gem install RubyInline' so ImageScience will work"
+end
 require 'image_science'
 
 source = ARGV[0]
