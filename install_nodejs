@@ -1,0 +1,27 @@
+#!/bin/bash
+
+SOURCES="/home/`whoami`/sources"
+
+if [ -d $SOURCES ]
+then
+  cd $SOURCES
+else
+  mkdir $SOURCES
+  cd $SOURCES
+fi
+
+if [ -d "node" ]
+then
+    echo "Pulling latest"
+    cd node
+    git pull origin master
+else
+    echo "Cloning repo"
+    git clone git://github.com/ry/node.git
+    cd node
+fi
+
+./configure
+make
+sudo make install
+make doc

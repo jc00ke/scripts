@@ -74,9 +74,6 @@ get_repo "tsaleh" "vim-supertab"
 echo "Installing vim-indent-object"
 get_repo "michaeljsmith" "vim-indent-object"
 
-echo "Installing jslint.vim"
-get_repo "hallettj" "jslint.vim"
-
 echo "Installing git-vim"
 get_repo "motemen" "git-vim"
 
