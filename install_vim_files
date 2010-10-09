@@ -74,6 +74,9 @@ get_repo "tsaleh" "vim-supertab"
 echo "Installing vim-indent-object"
 get_repo "michaeljsmith", "vim-indent-object"
 
+echo "Installing jslint.vim"
+get_repo "hallettj", "jslint.vim"
+
 echo "Installing jQuery"
 mkdir -p jquery/syntax
 wget -c -O jquery/syntax/jquery.vim http://www.vim.org/scripts/download_script.php?src_id=$JQUERY
@@ -95,22 +98,31 @@ else
 	echo "It was already added. Good to go"
 fi
 
-echo "Installing Command T plugin"
 ct=`curl -s https://wincent.com/products/command-t | grep releases | head -1 | cut -d\" -f2`
 cd /tmp
 vba=$( echo "$ct" | ruby -ruri -e 'puts File.basename(gets.chomp)' )
-wget $ct
-
-
-echo ""
-echo ""
 echo "***********************************************************"
-echo "Vim will start then, then :so %"
-echo "When the script is done it'll compile the ruby extension"
+echo "Would you like to download and install Command-T: $vba? If so, type yes. Anything else will bypass."
 echo "***********************************************************"
-sleep 3
-vim /tmp/$vba
-sleep 3
-cd ~/.vim/ruby/command-t
-ruby extconf.rb
-make
+read answer
+if [ "$answer" == 'yes' ]
+then
+    echo "Installing Command-T plugin"
+    wget $ct
+
+    echo ""
+    echo ""
+    echo "***********************************************************"
+    echo "Vim will start, then :so %"
+    echo "When the script is done it'll compile the ruby extension"
+    echo "***********************************************************"
+    sleep 3
+    vim /tmp/$vba
+    sleep 3
+    cd ~/.vim/ruby/command-t
+    ruby extconf.rb
+    make
+else
+    echo "Skipping install, just run this script again if you want it"
+    echo "***********************************************************"
+fi
