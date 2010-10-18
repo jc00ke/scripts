@@ -12,7 +12,7 @@ deb http://dl.google.com/linux/deb/ stable non-free
 deb http://dl.google.com/linux/deb/ testing non-free" > /etc/apt/sources.list.d/google.list'
 
 sudo sh -c 'add-apt-repository ppa:chromium-daily/ppa'
-sudo sh -c 'add-apt-repository ppa:meebey/ppa'
+sudo sh -c 'add-apt-repository ppa:am-monkeyd/nautilus-elementary-ppa'
 
 contains_pdx=`grep "cat.pdx" /etc/apt/sources.list | wc -l`
 if [ $contains == 0 ]
@@ -37,8 +37,11 @@ wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-ke
 echo "Installing the software"
 sudo apt-get update
 sudo apt-get upgrade
+sudo apt-get dist-upgrade
 sudo apt-get install build-essential vim-gnome vlc gnome-do shutter chromium-browser sound-juicer\
     filezilla geany xclip tagtool pigz\
     exuberant-ctags unison sqliteman kid3-qt htop curl\
     compizconfig-settings-manager compiz-fusion-plugins-extra smuxi\
     git-core git-doc git-svn git-gui
+
+sudo apt-get remove evolution
