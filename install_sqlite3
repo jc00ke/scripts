@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="3.6.23.1"
+VERSION="3.7.3"
 PACKAGE="sqlite-amalgamation-$VERSION"
 SOURCES="/home/`whoami`/sources"
 
