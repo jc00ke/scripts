@@ -12,10 +12,7 @@ deb http://dl.google.com/linux/deb/ stable non-free
 deb http://dl.google.com/linux/deb/ testing non-free" > /etc/apt/sources.list.d/google.list'
 
 sudo sh -c 'add-apt-repository ppa:chromium-daily/ppa'
-
-sudo sh -c 'add-apt-repository ppa:shutter/ppa'
-
-sudo sh -c 'add-apt-repository ppa:geany-dev/ppa'
+sudo sh -c 'add-apt-repository ppa:meebey/ppa'
 
 contains_pdx=`grep "cat.pdx" /etc/apt/sources.list | wc -l`
 if [ $contains == 0 ]
@@ -25,8 +22,8 @@ if [ $contains == 0 ]
         echo "********************************************"
         sudo sh -c 'echo "
 
-        deb http://mirrors.cat.pdx.edu/ubuntu/ lucid main
-        deb-src http://mirrors.cat.pdx.edu/ubuntu/ lucid main" >> /etc/apt/sources.list'
+        deb http://mirrors.cat.pdx.edu/ubuntu/ maverick main
+        deb-src http://mirrors.cat.pdx.edu/ubuntu/ maverick main" >> /etc/apt/sources.list'
 
     else
         echo "PDX mirror is already activated. Skipping..."
@@ -41,9 +38,7 @@ echo "Installing the software"
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install build-essential vim-gnome vlc gnome-do shutter chromium-browser sound-juicer\
-    gstreamer0.10-plugins-ugly-multiverse filezilla flashplugin-nonfree geany\
-    gstreamer0.10-ffmpeg gstreamer0.10-plugins-ugly xclip tagtool pigz\
+    filezilla geany xclip tagtool pigz\
     exuberant-ctags unison sqliteman kid3-qt htop curl\
-    compizconfig-settings-manager compiz-fusion-plugins-extra
-
-# vlc-plugin-esd mozilla-plugin-vlc
+    compizconfig-settings-manager compiz-fusion-plugins-extra smuxi\
+    git-core git-doc git-svn git-gui
