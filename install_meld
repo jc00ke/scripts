@@ -1,6 +1,0 @@
-#!/bin/bash
-
-sudo apt-get install intltool meld
-
-rm ~/bin/meld
-ln -s ~/sources/meld/bin/meld ~/bin
