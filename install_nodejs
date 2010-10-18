@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SOURCES="/home/`whoami`/sources"
+SOURCES="$HOME/sources"
 
 if [ -d $SOURCES ]
 then
