@@ -79,12 +79,12 @@ get_repo "motemen" "git-vim"
 
 echo "Installing jQuery"
 mkdir -p jquery/syntax
-wget -c -O jquery/syntax/jquery.vim http://www.vim.org/scripts/download_script.php?src_id=$JQUERY
+curl http://www.vim.org/scripts/download_script.php?src_id=$JQUERY -o "jquery/syntax/jquery.vim"
 
 cd $DOTVIM/autoload
 echo "Fetching latest pathogen.vim"
 rm pathogen.vim
-wget http://github.com/tpope/vim-pathogen/raw/master/autoload/pathogen.vim
+curl -O http://github.com/tpope/vim-pathogen/raw/master/autoload/pathogen.vim
 
 echo "Checking to see if pathogen has already been added to .vimrc"
 pathogen_cmd="call pathogen#runtime_append_all_bundles()"
@@ -108,7 +108,7 @@ read answer
 if [ "$answer" == 'yes' ]
 then
     echo "Installing Command-T plugin"
-    wget $ct
+    curl -O $ct
 
     echo ""
     echo ""
