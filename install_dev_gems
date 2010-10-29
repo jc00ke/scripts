@@ -1,2 +1,2 @@
 #!/bin/bash
-gem install --no-rdoc --no-ri interactive_editor awesome_print wirble boson hirb
+gem install --no-rdoc --no-ri interactive_editor awesome_print wirble boson hirb ruby-debug-completion bond
