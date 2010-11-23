@@ -71,6 +71,9 @@ get_repo "mileszs" "ack.vim"
 echo "Installing supertab"
 get_repo "tsaleh" "vim-supertab"
 
+echo "Installing align"
+get_repo "tsaleh" "vim-align"
+
 echo "Installing vim-indent-object"
 get_repo "michaeljsmith" "vim-indent-object"
 
