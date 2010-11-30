@@ -13,6 +13,7 @@ deb http://dl.google.com/linux/deb/ testing non-free" > /etc/apt/sources.list.d/
 
 sudo sh -c 'add-apt-repository ppa:chromium-daily/ppa'
 sudo sh -c 'add-apt-repository ppa:am-monkeyd/nautilus-elementary-ppa'
+sudo sh -c 'sudo add-apt-repository ppa:synapse-core/ppa'
 
 contains_pdx=`grep "cat.pdx" /etc/apt/sources.list | wc -l`
 if [ $contains == 0 ]
@@ -38,7 +39,7 @@ echo "Installing the software"
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get dist-upgrade
-sudo apt-get install build-essential vim-gnome vlc gnome-do shutter chromium-browser sound-juicer\
+sudo apt-get install build-essential vim-gnome vlc synapse shutter chromium-browser sound-juicer\
     filezilla geany xclip tagtool pigz\
     exuberant-ctags unison sqliteman kid3-qt htop curl\
     compizconfig-settings-manager compiz-fusion-plugins-extra smuxi\
