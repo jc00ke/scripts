@@ -84,6 +84,7 @@ curl https://github.com/jc00ke/Gemfile.vim/raw/master/syntax/Gemfile.vim -o "syn
 curl https://github.com/jc00ke/Gemfile.vim/raw/master/ftdetect/Gemfile.vim -o "ftdetect/Gemfile.vim"
 curl https://github.com/jc00ke/mustache.vim/raw/master/syntax/mustache.vim -o "syntax/mustache.vim"
 curl https://github.com/jc00ke/mustache.vim/raw/master/ftdetect/mustache.vim -o "ftdetect/mustache.vim"
+curl https://github.com/jc00ke/thor.vim/raw/master/ftdetect/thor.vim -o "ftdetect/thor.vim"
 
 cd $DOTVIM/autoload
 echo "Fetching latest pathogen.vim"
