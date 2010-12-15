@@ -77,6 +77,9 @@ get_repo "michaeljsmith" "vim-indent-object"
 echo "Installing git-vim"
 get_repo "motemen" "git-vim"
 
+echo "Installing vim-slurper"
+get_repo "alowe" "vim-slurper"
+
 echo "Installing jQuery"
 cd $DOTVIM
 curl http://www.vim.org/scripts/download_script.php?src_id=$JQUERY -o "syntax/jquery.vim"
