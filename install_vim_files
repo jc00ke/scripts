@@ -80,6 +80,9 @@ get_repo "motemen" "git-vim"
 echo "Installing vim-slurper"
 get_repo "alowe" "vim-slurper"
 
+echo "Installing vim-coffee-script"
+get_repo "kchmck" "vim-coffee-script"
+
 echo "Installing jQuery"
 cd $DOTVIM
 curl http://www.vim.org/scripts/download_script.php?src_id=$JQUERY -o "syntax/jquery.vim"
