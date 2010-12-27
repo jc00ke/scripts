@@ -41,46 +41,22 @@ for r in ${tpope_repos[*]}; do
     get_repo "tpope" $repo
 done
 
-echo "Installing NERDTree"
 get_repo "scrooloose" "nerdtree"
-
-echo "Installing Syntastic"
 get_repo "scrooloose" "syntastic"
-
-echo "Installing NERDCommenter"
 get_repo "jc00ke" "nerdcommenter"
-
-echo "Installing snipMate"
 get_repo "msanders" "snipmate.vim"
-
-echo "Installing vim-ruby"
 get_repo "vim-ruby" "vim-ruby"
-
-echo "Installing vim-ruby-debugger"
 get_repo "astashov" "vim-ruby-debugger"
-
-echo "Installing taglist.vim"
 get_repo "jc00ke" "taglist.vim"
-
-echo "Installing ack.vim"
 get_repo "mileszs" "ack.vim"
-
-echo "Installing supertab"
 get_repo "tsaleh" "vim-supertab"
-
-echo "Installing align"
 get_repo "tsaleh" "vim-align"
-
-echo "Installing vim-indent-object"
+get_repo "tsaleh" "vim-matchit"
+get_repo "kana" "vim-textobj-user"
+get_repo "nelstrom" "vim-textobj-rubyblock"
 get_repo "michaeljsmith" "vim-indent-object"
-
-echo "Installing git-vim"
 get_repo "motemen" "git-vim"
-
-echo "Installing vim-slurper"
 get_repo "alowe" "vim-slurper"
-
-echo "Installing vim-coffee-script"
 get_repo "kchmck" "vim-coffee-script"
 
 echo "Installing jQuery"
