@@ -35,6 +35,9 @@ fi
 echo "Getting Google's linux signing key"
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 
+# Remove stuff first so it's not updated
+sudo apt-get remove evolution
+
 # Install software
 echo "Installing the software"
 sudo apt-get update
@@ -46,5 +49,3 @@ sudo apt-get install build-essential vim-gnome vlc synapse shutter chromium-brow
     compizconfig-settings-manager compiz-fusion-plugins-extra smuxi\
     git-core git-doc git-svn git-gui libreadline5-dev\
     libreoffice
-
-sudo apt-get remove evolution
