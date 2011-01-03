@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# Install software
-echo "Installing the software"
-sudo apt-get install libssl-dev libreadline5-dev
