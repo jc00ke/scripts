@@ -47,5 +47,6 @@ sudo apt-get install build-essential vim-gnome vlc synapse shutter chromium-brow
     filezilla geany xclip tagtool pigz\
     exuberant-ctags unison sqliteman kid3-qt htop curl\
     compizconfig-settings-manager compiz-fusion-plugins-extra smuxi\
-    git-core git-doc git-svn git-gui libreadline5-dev\
-    libreoffice libssl-dev
+    git-core git-doc git-svn git-gui\
+    libreadline5-dev libssl-dev zlib1g-dev\
+    libreoffice 
