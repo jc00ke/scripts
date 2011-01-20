@@ -15,6 +15,7 @@ sudo sh -c 'add-apt-repository ppa:chromium-daily/ppa'
 sudo sh -c 'add-apt-repository ppa:am-monkeyd/nautilus-elementary-ppa'
 sudo sh -c 'sudo add-apt-repository ppa:synapse-core/ppa'
 sudo sh -c 'sudo add-apt-repository ppa:libreoffice/ppa'
+sudo sh -c 'sudo add-apt-repository ppa:git-core/ppa'
 
 contains_pdx=`grep "cat.pdx" /etc/apt/sources.list | wc -l`
 if [ $contains == 0 ]
