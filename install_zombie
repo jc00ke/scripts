@@ -1,0 +1,18 @@
+#!/bin/bash
+
+npm install jsdom html5 coffee-script base64 mime
+
+cd $HOME/local
+
+if [ -d "zombie" ]
+then
+  echo "Pulling latest"
+  cd zombie
+  git pull origin master
+else
+  echo "cloning repo"
+  git clone git://github.com/assaf/zombie.git
+  cd zombie
+fi
+
+cake build

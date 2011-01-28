@@ -21,7 +21,18 @@ else
     cd node
 fi
 
-./configure
+mkdir $HOME/local
+./configure --prefix=$HOME/local/node
 make
-sudo make install
+make install
 make doc
+
+echo "*** Make sure to add $HOME/local/node to the path in ~/.bashrc"
+
+echo "Install npm"
+
+cd $HOME/local
+curl https://github.com/isaacs/npm/tarball/master -o npm.tar.gz
+tar xf npm.tar.gz
+cd npm
+make
