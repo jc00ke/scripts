@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Add Aptitude sources
+sudo sh -c 'sudo add-apt-repository ppa:git-core/ppa'
+
+# Install software
+echo "Installing the software"
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+sudo apt-get install build-essential vim curl\
+    git-core git-doc git-svn git-gui\
+    libreadline5-dev libssl-dev zlib1g-dev\
