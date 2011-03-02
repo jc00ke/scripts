@@ -61,6 +61,7 @@ get_repo "michaeljsmith" "vim-indent-object"
 get_repo "motemen" "git-vim"
 get_repo "alowe" "vim-slurper"
 get_repo "kchmck" "vim-coffee-script"
+get_repo "int3" "vim-extradite"
 
 echo "Installing jQuery"
 cd $DOTVIM
