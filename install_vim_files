@@ -59,7 +59,7 @@ get_repo "kana" "vim-textobj-user"
 get_repo "nelstrom" "vim-textobj-rubyblock"
 get_repo "michaeljsmith" "vim-indent-object"
 get_repo "motemen" "git-vim"
-get_repo "alowe" "vim-slurper"
+get_repo "adamlowe" "vim-slurper"
 get_repo "kchmck" "vim-coffee-script"
 get_repo "int3" "vim-extradite"
 
