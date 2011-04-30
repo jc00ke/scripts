@@ -61,6 +61,7 @@ get_repo "motemen" "git-vim"
 get_repo "adamlowe" "vim-slurper"
 get_repo "kchmck" "vim-coffee-script"
 get_repo "int3" "vim-extradite"
+get_repo "altercation" "vim-colors-solarized"
 
 echo "Installing jQuery"
 cd $DOTVIM
