@@ -46,4 +46,5 @@ sudo apt-get install build-essential vim-gnome vlc synapse shutter chromium-brow
     unison sqliteman kid3-qt htop curl\
     compizconfig-settings-manager compiz-fusion-plugins-extra smuxi\
     git git-doc git-svn git-gui gitg\
-    libreadline5-dev libssl-dev zlib1g-dev
+    libreadline5-dev libssl-dev zlib1g-dev\
+    libxml2-dev libxslt1-dev
