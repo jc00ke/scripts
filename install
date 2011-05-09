@@ -12,9 +12,6 @@ deb http://dl.google.com/linux/deb/ stable non-free
 deb http://dl.google.com/linux/deb/ testing non-free" > /etc/apt/sources.list.d/google.list'
 
 sudo sh -c 'add-apt-repository ppa:chromium-daily/ppa'
-sudo sh -c 'add-apt-repository ppa:am-monkeyd/nautilus-elementary-ppa'
-sudo sh -c 'sudo add-apt-repository ppa:synapse-core/ppa'
-sudo sh -c 'sudo add-apt-repository ppa:libreoffice/ppa'
 sudo sh -c 'sudo add-apt-repository ppa:git-core/ppa'
 
 contains_pdx=`grep "cat.pdx" /etc/apt/sources.list | wc -l`
@@ -25,8 +22,8 @@ if [ $contains == 0 ]
         echo "********************************************"
         sudo sh -c 'echo "
 
-        deb http://mirrors.cat.pdx.edu/ubuntu/ maverick main
-        deb-src http://mirrors.cat.pdx.edu/ubuntu/ maverick main" >> /etc/apt/sources.list'
+        deb http://mirrors.cat.pdx.edu/ubuntu/ natty main
+        deb-src http://mirrors.cat.pdx.edu/ubuntu/ natty main" >> /etc/apt/sources.list'
 
     else
         echo "PDX mirror is already activated. Skipping..."
@@ -48,6 +45,5 @@ sudo apt-get install build-essential vim-gnome vlc synapse shutter chromium-brow
     filezilla geany xclip tagtool pigz\
     unison sqliteman kid3-qt htop curl\
     compizconfig-settings-manager compiz-fusion-plugins-extra smuxi\
-    git git-doc git-svn git-gui\
-    libreadline5-dev libssl-dev zlib1g-dev\
-    libreoffice 
+    git git-doc git-svn git-gui gitg\
+    libreadline5-dev libssl-dev zlib1g-dev
