@@ -12,7 +12,8 @@ deb http://dl.google.com/linux/deb/ stable non-free
 deb http://dl.google.com/linux/deb/ testing non-free" > /etc/apt/sources.list.d/google.list'
 
 sudo sh -c 'add-apt-repository ppa:chromium-daily/ppa'
-sudo sh -c 'sudo add-apt-repository ppa:git-core/ppa'
+sudo sh -c 'add-apt-repository ppa:git-core/ppa'
+sudo sh -c 'add-apt-repository ppa:indicator-multiload/stable-daily'
 
 contains_pdx=`grep "cat.pdx" /etc/apt/sources.list | wc -l`
 if [ $contains == 0 ]
@@ -47,4 +48,5 @@ sudo apt-get install build-essential vim-gnome vlc synapse shutter chromium-brow
     compizconfig-settings-manager compiz-fusion-plugins-extra smuxi\
     git git-doc git-svn git-gui gitg\
     libreadline5-dev libssl-dev zlib1g-dev\
-    libxml2-dev libxslt1-dev
+    libxml2-dev libxslt1-dev\
+    indicator-multiload
