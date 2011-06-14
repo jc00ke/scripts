@@ -11,7 +11,6 @@ deb http://dl.google.com/linux/deb/ stable non-free
 # Google testing repository
 deb http://dl.google.com/linux/deb/ testing non-free" > /etc/apt/sources.list.d/google.list'
 
-sudo sh -c 'add-apt-repository ppa:chromium-daily/ppa'
 sudo sh -c 'add-apt-repository ppa:git-core/ppa'
 sudo sh -c 'add-apt-repository ppa:indicator-multiload/stable-daily'
 
@@ -30,9 +29,11 @@ if [ $contains == 0 ]
         echo "PDX mirror is already activated. Skipping..."
 fi
 
-# Google Repo Setup
-echo "Getting Google's linux signing key"
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+
+echo "********************************************"
+echo "http://www.google.com/chrome for stable version"
+echo "********************************************"
+sleep 5
 
 # Remove stuff first so it's not updated
 sudo apt-get remove evolution
@@ -42,10 +43,10 @@ echo "Installing the software"
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get dist-upgrade
-sudo apt-get install build-essential vim-gnome vlc synapse shutter chromium-browser sound-juicer\
+sudo apt-get install build-essential vim-gnome vlc synapse shutter sound-juicer\
     filezilla geany xclip tagtool pigz\
     unison sqliteman kid3-qt htop curl\
-    compizconfig-settings-manager compiz-fusion-plugins-extra smuxi\
+    compizconfig-settings-manager compiz-fusion-plugins-extra weechat\
     git git-doc git-svn git-gui gitg\
     libreadline5-dev libssl-dev zlib1g-dev\
     libxml2-dev libxslt1-dev\
