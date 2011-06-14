@@ -2,4 +2,4 @@
 
 # Install software
 echo "Installing the software"
-sudo apt-get install libsdl1.2-dev libsdl-image1.2-dev libpcre3-dev libftgl-dev libpng12-dev libjpeg62-dev
+sudo apt-get install libsdl1.2-dev libsdl-image1.2-dev libpcre3-dev libftgl-dev libpng12-dev libjpeg62-dev libglew1.5-dev
