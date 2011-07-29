@@ -11,3 +11,4 @@ sudo apt-get dist-upgrade
 sudo apt-get install build-essential vim curl\
     git git-doc git-svn git-gui\
     libreadline5-dev libssl-dev zlib1g-dev\
+    libxml2-dev libxslt1-dev\
