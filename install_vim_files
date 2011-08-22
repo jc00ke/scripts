@@ -37,7 +37,7 @@ echo "Creating .vim folders if necessary"
 mkdir -p $DOTVIM/{autoload,bundle,ftdetect,syntax}
 cd $DOTVIM/bundle/
 
-tpope_repos=(rails haml git cucumber fugitive surround unimpaired abolish repeat markdown endwise)
+tpope_repos=(rails haml git cucumber fugitive surround unimpaired abolish repeat markdown endwise bundler rake)
 
 for r in ${tpope_repos[*]}; do
 	repo="vim-$r"
@@ -68,8 +68,6 @@ get_repo "wincent" "Command-T"
 echo "Installing jQuery"
 cd $DOTVIM
 curl http://www.vim.org/scripts/download_script.php?src_id=$JQUERY -o "syntax/jquery.vim"
-curl https://raw.github.com/jc00ke/Gemfile.vim/master/syntax/Gemfile.vim -o "syntax/Gemfile.vim"
-curl https://raw.github.com/jc00ke/Gemfile.vim/master/ftdetect/Gemfile.vim -o "ftdetect/Gemfile.vim"
 curl https://raw.github.com/jc00ke/thor.vim/master/ftdetect/thor.vim -o "ftdetect/thor.vim"
 
 cd $DOTVIM/autoload
@@ -98,10 +96,6 @@ then
     echo "Installing Command-T plugin"
     cd $DOTVIM/bundle/Command-T
     rake make
-    sleep 3
-    cd ~/.vim/ruby/command-t
-    ruby extconf.rb
-    make
 else
     echo "Skipping install, just run this script again if you want it"
     echo "***********************************************************"
