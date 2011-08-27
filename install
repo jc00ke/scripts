@@ -50,4 +50,4 @@ sudo apt-get install build-essential vim-gnome vlc synapse shutter sound-juicer\
     git git-doc git-svn git-gui gitg\
     libreadline5-dev libssl-dev zlib1g-dev\
     libxml2-dev libxslt1-dev\
-    indicator-multiload
+    indicator-multiload nautilus-open-terminal
