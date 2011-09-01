@@ -64,6 +64,7 @@ get_repo "int3" "vim-extradite"
 get_repo "altercation" "vim-colors-solarized"
 get_repo "juvenn" "mustache.vim"
 get_repo "wincent" "Command-T"
+get_repo "nathanaelkane" "vim-indent-guides"
 
 echo "Installing jQuery"
 cd $DOTVIM
