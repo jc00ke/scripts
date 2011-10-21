@@ -67,6 +67,7 @@ get_repo "juvenn" "mustache.vim"
 get_repo "wincent" "Command-T"
 get_repo "nathanaelkane" "vim-indent-guides"
 get_repo "bbommarito" "vim-slim"
+get_repo "mattn" "gist-vim"
 
 echo "Installing jQuery"
 cd $DOTVIM
