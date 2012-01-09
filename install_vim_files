@@ -64,7 +64,7 @@ get_repo "kchmck" "vim-coffee-script"
 get_repo "int3" "vim-extradite"
 get_repo "altercation" "vim-colors-solarized"
 get_repo "juvenn" "mustache.vim"
-get_repo "wincent" "Command-T"
+get_repo "kien" "ctrlp.vim"
 get_repo "nathanaelkane" "vim-indent-guides"
 get_repo "bbommarito" "vim-slim"
 get_repo "mattn" "gist-vim"
@@ -89,18 +89,4 @@ then
 	echo "$pathogen_cmd" >> ~/.vimrc
 else
 	echo "It was already added. Good to go"
-fi
-
-echo "***********************************************************"
-echo "Would you like to download and install Command-T: $vba? If so, type yes. Anything else will bypass."
-echo "***********************************************************"
-read answer
-if [ "$answer" == 'yes' ]
-then
-    echo "Installing Command-T plugin"
-    cd $DOTVIM/bundle/Command-T
-    rake make
-else
-    echo "Skipping install, just run this script again if you want it"
-    echo "***********************************************************"
 fi
