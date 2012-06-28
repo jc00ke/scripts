@@ -30,10 +30,7 @@ if [ $contains == 0 ]
 fi
 
 
-echo "********************************************"
-echo "http://www.google.com/chrome for stable version"
-echo "********************************************"
-sleep 5
+sensible-browser http://www.google.com/chrome
 
 # Remove stuff first so it's not updated
 sudo apt-get remove evolution
