@@ -1,9 +1,0 @@
-#!/bin/bash
-
-sudo add-apt-repository ppa:jonls/redshift-ppa
-sudo apt-get update && sudo apt-get install redshift
-
-echo "******************************"
-echo ""
-echo "check out http://www.omgubuntu.co.uk/2010/05/tired-eyes-computer-screen-ubuntu.html"
-echo "for usage"
