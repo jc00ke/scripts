@@ -22,8 +22,8 @@ if [ $contains == 0 ]
         echo "********************************************"
         sudo sh -c 'echo "
 
-        deb http://mirrors.cat.pdx.edu/ubuntu/ natty main
-        deb-src http://mirrors.cat.pdx.edu/ubuntu/ natty main" >> /etc/apt/sources.list'
+        deb http://mirrors.cat.pdx.edu/ubuntu/ precise main
+        deb-src http://mirrors.cat.pdx.edu/ubuntu/ precise main" >> /etc/apt/sources.list'
 
     else
         echo "PDX mirror is already activated. Skipping..."
