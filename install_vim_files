@@ -68,6 +68,8 @@ get_repo "kien" "ctrlp.vim"
 get_repo "nathanaelkane" "vim-indent-guides"
 get_repo "bbommarito" "vim-slim"
 get_repo "mattn" "gist-vim"
+get_repo "benmills" "vimux"
+get_repo "jgdavey" "vim-blockle"
 
 echo "Installing jQuery"
 cd $DOTVIM
