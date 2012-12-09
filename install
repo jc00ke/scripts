@@ -13,6 +13,7 @@ deb http://dl.google.com/linux/deb/ testing non-free" > /etc/apt/sources.list.d/
 
 sudo sh -c 'add-apt-repository ppa:git-core/ppa'
 sudo sh -c 'add-apt-repository ppa:indicator-multiload/stable-daily'
+sudo sh -c 'add-apt-repository ppa:zedtux/naturalscrolling'
 
 contains_pdx=`grep "cat.pdx" /etc/apt/sources.list | wc -l`
 if [ $contains == 0 ]
@@ -48,4 +49,4 @@ sudo apt-get install build-essential vim-gnome vlc synapse shutter sound-juicer\
     libreadline6-dev libssl-dev zlib1g-dev\
     libxml2-dev libxslt1-dev\
     indicator-multiload nautilus-open-terminal\
-    redshift-gtk
+    gtk-redshift naturalscrolling
