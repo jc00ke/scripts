@@ -44,7 +44,7 @@ sudo apt-get dist-upgrade
 sudo apt-get install build-essential vim-gnome vlc synapse shutter sound-juicer\
     filezilla geany xclip tagtool pigz\
     unison sqliteman kid3-qt htop curl\
-    compizconfig-settings-manager compiz-fusion-plugins-extra weechat\
+    compizconfig-settings-manager weechat\
     git git-doc git-svn git-gui gitg\
     libreadline6-dev libssl-dev zlib1g-dev\
     libxml2-dev libxslt1-dev\
