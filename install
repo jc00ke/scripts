@@ -49,4 +49,4 @@ sudo apt-get install build-essential vim-gnome vlc synapse shutter sound-juicer\
     libreadline6-dev libssl-dev zlib1g-dev\
     libxml2-dev libxslt1-dev\
     indicator-multiload nautilus-open-terminal\
-    gtk-redshift naturalscrolling
+    gtk-redshift naturalscrolling parallel
