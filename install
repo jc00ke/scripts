@@ -51,4 +51,4 @@ sudo apt-get install build-essential vim-gnome vlc synapse shutter sound-juicer\
     libxml2-dev libxslt1-dev\
     indicator-multiload nautilus-open-terminal\
     gtk-redshift naturalscrolling parallel\
-    polly
+    polly silversearcher-ag
