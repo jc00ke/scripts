@@ -1,21 +1,15 @@
 #!/bin/bash
 
-VERSION="3.7.7.1"
-PACKAGE="sqlite-amalgamation-$VERSION"
-SOURCES="/home/`whoami`/sources"
+VERSION="3080200"
+PACKAGE="sqlite-autoconf-$VERSION"
+TARBALL="$PACKAGE.tar.gz"
 
-if [ -d $SOURCES ]
-then
-  cd $SOURCES
-else
-  mkdir $SOURCES
-  cd $SOURCES
-fi
+sudo apt-get install libsqlite3-dev -y
 
-sudo apt-get install libsqlite3-dev
+cd "$HOME/src"
+rm -rf sqlite*
+wget http://www.sqlite.org/2013/$TARBALL
+tar xzf $TARBALL
 
-wget http://www.sqlite.org/$PACKAGE.tar.gz
-tar xzf $PACKAGE.tar.gz
-
-cd sqlite-$VERSION/
+cd $PACKAGE
 ./configure && make && sudo make install
