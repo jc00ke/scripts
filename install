@@ -5,34 +5,8 @@ echo "********************************************"
 echo "Adding the repos to /etc/apt/sources.list.d/"
 echo "********************************************"
 
-sudo sh -c 'echo "# Google repository
-deb http://dl.google.com/linux/deb/ stable non-free
-
-# Google testing repository
-deb http://dl.google.com/linux/deb/ testing non-free" > /etc/apt/sources.list.d/google.list'
-
 sudo sh -c 'add-apt-repository ppa:git-core/ppa'
 sudo sh -c 'add-apt-repository ppa:indicator-multiload/stable-daily'
-sudo sh -c 'add-apt-repository ppa:zedtux/naturalscrolling'
-sudo sh -c 'add-apt-repository ppa:conscioususer/polly-daily'
-
-contains_pdx=`grep "cat.pdx" /etc/apt/sources.list | wc -l`
-if [ $contains == 0 ]
-    then
-        echo "********************************************"
-        echo "Adding pdx.edu as mirror"
-        echo "********************************************"
-        sudo sh -c 'echo "
-
-        deb http://mirrors.cat.pdx.edu/ubuntu/ quantal main
-        deb-src http://mirrors.cat.pdx.edu/ubuntu/ quantal main" >> /etc/apt/sources.list'
-
-    else
-        echo "PDX mirror is already activated. Skipping..."
-fi
-
-
-sensible-browser http://www.google.com/chrome
 
 # Remove stuff first so it's not updated
 sudo apt-get remove evolution
@@ -42,13 +16,12 @@ echo "Installing the software"
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get dist-upgrade
-sudo apt-get install build-essential vim-gnome vlc synapse shutter sound-juicer\
-    filezilla geany xclip tagtool pigz\
-    unison sqliteman kid3-qt htop curl\
-    compizconfig-settings-manager weechat\
+sudo apt-get install build-essential vlc shutter sound-juicer\
+    geany xclip tagtool pigz\
+    unison kid3-qt htop curl\
     git git-doc git-svn git-gui gitg\
-    libreadline6-dev libssl-dev zlib1g-dev\
+    libreadline-dev libssl-dev zlib1g-dev\
     libxml2-dev libxslt1-dev\
     indicator-multiload nautilus-open-terminal\
-    gtk-redshift naturalscrolling parallel\
-    polly silversearcher-ag
+    gtk-redshift parallel\
+    silversearcher-ag
