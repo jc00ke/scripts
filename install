@@ -45,4 +45,5 @@ sudo apt-get install  build-essential\
                       libxcb-randr0-dev\
                       parallel\
                       zsh\
-                      silversearcher-ag
+                      silversearcher-ag\
+                      unetbootin
