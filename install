@@ -17,7 +17,7 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get dist-upgrade
 sudo apt-get install build-essential vlc shutter sound-juicer\
-    geany xclip tagtool pigz\
+    geany xclip\
     unison kid3-qt htop curl\
     git git-doc git-svn git-gui gitg libffi-dev libvm-dev\
     libreadline-dev libssl-dev zlib1g-dev libncurses5-dev\
