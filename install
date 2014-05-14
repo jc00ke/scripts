@@ -24,4 +24,4 @@ sudo apt-get install build-essential vlc shutter sound-juicer\
     libxml2-dev libxslt1-dev libyaml-dev libgdbm-dev\
     indicator-multiload autopoint\
     libxcb-randr0-dev parallel\
-    silversearcher-ag
+    zsh silversearcher-ag
