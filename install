@@ -7,6 +7,7 @@ echo "********************************************"
 
 sudo sh -c 'add-apt-repository ppa:git-core/ppa'
 sudo sh -c 'add-apt-repository ppa:indicator-multiload/stable-daily'
+sudo sh -c 'add-apt-repository ppa:apt-fast/stable'
 
 # Remove stuff first so it's not updated
 sudo apt-get remove evolution
@@ -24,4 +25,5 @@ sudo apt-get install build-essential vlc shutter sound-juicer\
     libxml2-dev libxslt1-dev libyaml-dev libgdbm-dev\
     indicator-multiload autopoint\
     libxcb-randr0-dev parallel\
-    zsh silversearcher-ag
+    zsh silversearcher-ag\
+    apt-fast
