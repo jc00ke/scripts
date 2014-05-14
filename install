@@ -2,28 +2,47 @@
 
 # Add Aptitude sources
 echo "********************************************"
-echo "Adding the repos to /etc/apt/sources.list.d/"
+echo "Copy sources.list.d/* to /etc/apt/sources.list.d/"
+echo "Hit enter when done"
 echo "********************************************"
-
-sudo sh -c 'add-apt-repository ppa:git-core/ppa'
-sudo sh -c 'add-apt-repository ppa:indicator-multiload/stable-daily'
-sudo sh -c 'add-apt-repository ppa:apt-fast/stable'
+read
 
 # Remove stuff first so it's not updated
-sudo apt-get remove evolution
+sudo apt-get remove -y evolution
 
 # Install software
 echo "Installing the software"
 sudo apt-get update
 sudo apt-get upgrade
+sudo apt-get install apt-fast
 sudo apt-get dist-upgrade
-sudo apt-get install build-essential vlc shutter sound-juicer\
-    geany xclip\
-    unison kid3-qt htop curl\
-    git git-doc git-svn git-gui gitg libffi-dev libvm-dev\
-    libreadline-dev libssl-dev zlib1g-dev libncurses5-dev\
-    libxml2-dev libxslt1-dev libyaml-dev libgdbm-dev\
-    indicator-multiload autopoint\
-    libxcb-randr0-dev parallel\
-    zsh silversearcher-ag\
-    apt-fast
+sudo apt-get install  build-essential\
+                      vlc\
+                      shutter\
+                      geany\
+                      xclip\
+                      unison\
+                      kid3-qt\
+                      htop\
+                      curl\
+                      git\
+                      git-doc\
+                      git-svn\
+                      git-gui\
+                      gitg\
+                      libffi-dev\
+                      libvm-dev\
+                      libreadline-dev\
+                      libssl-dev\
+                      zlib1g-dev\
+                      libncurses5-dev\
+                      libxml2-dev\
+                      libxslt1-dev\
+                      libyaml-dev\
+                      libgdbm-dev\
+                      indicator-multiload\
+                      autopoint\
+                      libxcb-randr0-dev\
+                      parallel\
+                      zsh\
+                      silversearcher-ag
