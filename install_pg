@@ -1,9 +1,0 @@
-#!/bin/bash
-
-version="9.3"
-
-sudo apt-get install -y \
-  postgresql-$version \
-  postgresql-contrib-$version \
-  libpq-dev \
-  postgresql-client-$version
