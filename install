@@ -70,7 +70,8 @@ sudo apt-get install -y \
                       libtool \
                       exuberant-ctags \
                       xdotool \
-                      wmctrl
+                      wmctrl \
+                      nodejs
 
 
 
@@ -85,3 +86,8 @@ echo "Installing Heroku Toolbelt"
 echo "********************************************"
 wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
+
+echo "********************************************"
+echo "Installing NPM
+echo "********************************************"
+curl https://npmjs.org/install.sh | sudo sh
