@@ -71,7 +71,8 @@ sudo apt-get install -y \
                       exuberant-ctags \
                       xdotool \
                       wmctrl \
-                      nodejs
+                      nodejs \
+                      easytag
 
 
 
