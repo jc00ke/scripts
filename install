@@ -11,6 +11,7 @@ sudo sh -c 'add-apt-repository ppa:chris-lea/node.js'
 sudo sh -c 'add-apt-repository ppa:fossfreedom/byzanz'
 sudo sh -c 'add-apt-repository ppa:kilian/f.lux'
 sudo sh -c 'add-apt-repository ppa:shutter/ppa'
+sudo sh -c 'add-apt-repository ppa:nesthib/weechat-stable'
 wget -qO - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 wget -qO - https://d2t3ff60b2tol4.cloudfront.net/services@insynchq.com.gpg.key | sudo apt-key add -
 sudo sh -c 'echo "deb http://apt.insynchq.com/ubuntu $(lsb_release -sc) non-free" >> /etc/apt/sources.list.d/insync.list'
@@ -73,7 +74,8 @@ sudo apt-get install -y \
                       xdotool \
                       wmctrl \
                       nodejs \
-                      easytag
+                      easytag \
+                      weechat
 
 
 
