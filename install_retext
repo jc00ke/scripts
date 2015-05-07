@@ -1,6 +1,0 @@
-#!/bin/bash
-
-sudo apt-get update && sudo apt-get install qt4-dev-tools pyqt4-dev-tools libqt4-dev
-sudo easy_install ElementTree
-sudo easy_install Markdown
-sensible-browser http://sourceforge.net/projects/retext/files/
