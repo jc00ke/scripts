@@ -1,14 +1,15 @@
 #!/bin/bash
 
-VERSION="3080200"
+VERSION="3081000"
 PACKAGE="sqlite-autoconf-$VERSION"
 TARBALL="$PACKAGE.tar.gz"
 
-sudo apt-get install libsqlite3-dev -y
+sudo apt-get install -y \
+  libsqlite3-dev
 
 cd "$HOME/src"
 rm -rf sqlite*
-wget http://www.sqlite.org/2013/$TARBALL
+wget http://www.sqlite.org/2015/$TARBALL
 tar xzf $TARBALL
 
 cd $PACKAGE
