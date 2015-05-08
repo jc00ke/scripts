@@ -113,7 +113,8 @@ sudo apt-get install -y \
                       bleachbit \
                       python-software-properties \
                       tmux \
-                      tmate
+                      tmate \
+                      direnv
 
 #if [ -z "$(which google-chrome-stable)" ]; then
   #log "Installing Chrome"
@@ -135,10 +136,10 @@ fi
 
 if [ -z "$(which vboxmanage)" ]; then
   sudo sh -c "echo 'deb http://download.virtualbox.org/virtualbox/debian $RELEASE contrib' > /etc/apt/sources.list.d/virtualbox.list"
-  
+
   log "Install the apt-secure key"
   add_key "http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc"
-  
+
   sudo apt-get update
   sudo apt-get install -y dkms virtualbox-4.3
 fi
@@ -150,12 +151,12 @@ if [ -z "$(which sqlite3)" ]; then
   tarball="$package.tar.gz"
   sudo apt-get install -y \
     libsqlite3-dev
-  
+
   cd "$HOME/src"
   rm -rf sqlite*
   wget http://www.sqlite.org/2015/$tarball
   tar xzf $tarball
-  
+
   cd $package
   ./configure && make && sudo make install
 fi
