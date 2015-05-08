@@ -34,6 +34,7 @@ add_ppa "shutter/ppa" "shutter"
 add_ppa "yorba/ppa" "yorba"
 add_ppa "ubuntuhandbook1/corebird" "corebird"
 add_ppa "nviennot/tmate" "tmate"
+add_ppa "saiarcot895/myppa" "saiarcot895"
 
 if [ -z "$(apt-key list | grep postgres)" ]; then
   add_key "https://www.postgresql.org/media/keys/ACCC4CF8.asc"
