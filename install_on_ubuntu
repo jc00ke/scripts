@@ -1,34 +1,61 @@
 #!/bin/bash
 
-# Add Aptitude sources
-echo "********************************************"
-echo "Adding the repos to /etc/apt/sources.list.d/"
-echo "********************************************"
+function log {
+  msg="$1"
+  echo "********************************************"
+  echo "$msg"
+  echo "********************************************"
+  echo ""
+}
+log "Adding the repos to /etc/apt/sources.list.d/"
 
-sudo sh -c 'add-apt-repository ppa:git-core/ppa'
-sudo sh -c 'add-apt-repository ppa:indicator-multiload/stable-daily'
-sudo sh -c 'add-apt-repository ppa:chris-lea/node.js'
-sudo sh -c 'add-apt-repository ppa:fossfreedom/byzanz'
-sudo sh -c 'add-apt-repository ppa:kilian/f.lux'
-sudo sh -c 'add-apt-repository ppa:shutter/ppa'
-sudo sh -c 'add-apt-repository ppa:yorba/ppa'
-sudo sh -c 'add-apt-repository ppa:ubuntuhandbook1/corebird'
-sudo sh -c 'add-apt-repository ppa:nviennot/tmate'
-wget -qO - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-wget -qO - https://d2t3ff60b2tol4.cloudfront.net/services@insynchq.com.gpg.key | sudo apt-key add -
-sudo sh -c 'echo "deb http://apt.insynchq.com/ubuntu $(lsb_release -sc) non-free" >> /etc/apt/sources.list.d/insync.list'
+RELEASE="$(lsb_release -sc)"
+function add_ppa {
+  ppa="$1"
+  pattern="$2"
+  if [ -z "ls /etc/apt/sources.list.d/*$pattern*" ]; then
+    log "Adding $ppa"
+    sudo sh -c "add-apt-repository ppa:$ppa"
+  fi
+}
 
-# Remove stuff first so it's not updated
+function add_key {
+  url="$1"
+  wget -qO - "$url" | sudo apt-key add -
+}
+
+add_ppa "saiarcot895/myppa"
+add_ppa "git-core/ppa" "git"
+add_ppa "chris-lea/node.js", "node_js"
+add_ppa "indicator-multiload/stable-daily" "indicator-multiload"
+add_ppa "fossfreedom/byzanz" "byzanz"
+add_ppa "kilian/f.lux" "f_lux"
+add_ppa "shutter/ppa" "shutter"
+add_ppa "yorba/ppa" "yorba"
+add_ppa "ubuntuhandbook1/corebird" "corebird"
+add_ppa "nviennot/tmate" "tmate"
+
+if [ -z "$(apt-key list | grep postgres)" ]; then
+  add_key "https://www.postgresql.org/media/keys/ACCC4CF8.asc"
+fi
+
+if [ -z "ls /etc/apt/sources.list.d/insync.list" ]; then
+  add_key "https://d2t3ff60b2tol4.cloudfront.net/services@insynchq.com.gpg.key"
+  sudo sh -c "echo 'deb http://apt.insynchq.com/ubuntu $RELEASE non-free' >> /etc/apt/sources.list.d/insync.list"
+fi
+
+log "Removing unnused software"
 sudo apt-get remove -y evolution firefox
 
-# Install software
-echo "********************************************"
-echo "Installing the software"
-echo "********************************************"
+log "Installing the software"
 sudo apt-get update
+log "Installing apt-fast"
 sudo apt-get install -y apt-fast
+log "Upgrade"
 sudo apt-get upgrade
+log "Dist upgrade"
 sudo apt-get dist-upgrade
+log "Install all the things"
 sudo apt-get install -y \
                       build-essential \
                       bison \
@@ -88,16 +115,47 @@ sudo apt-get install -y \
                       tmux \
                       tmate
 
-echo "********************************************"
-echo "Installing Chrome"
-echo "********************************************"
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i google-chrome-stable_current_amd64.deb
+#if [ -z "$(which google-chrome-stable)" ]; then
+  #log "Installing Chrome"
+  #wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  #sudo dpkg -i google-chrome-stable_current_amd64.deb
+#fi
 
-echo "********************************************"
-echo "Installing Heroku Toolbelt"
-echo "********************************************"
-wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+if [ -z "ls /etc/apt/sources.list.d/google-chrome.list" ]; then
+  log "Installing Chrome"
+  add_key "https://dl-ssl.google.com/linux/linux_signing_key.pub"
+  sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+  sudo apt-get install google-chrome-stable
+fi
 
-source install_virtualbox
-source install_sqlite3
+if [ -z "$(which heroku)" ]; then
+  log "Installing Heroku Toolbelt"
+  wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+fi
+
+if [ -z "$(which vboxmanage)" ]; then
+  sudo sh -c "echo 'deb http://download.virtualbox.org/virtualbox/debian $RELEASE contrib' > /etc/apt/sources.list.d/virtualbox.list"
+  
+  log "Install the apt-secure key"
+  add_key "http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc"
+  
+  sudo apt-get update
+  sudo apt-get install -y dkms virtualbox-4.3
+fi
+
+
+if [ -z "$(which sqlite3)" ]; then
+  version="3081000"
+  package="sqlite-autoconf-$VERSION"
+  tarball="$package.tar.gz"
+  sudo apt-get install -y \
+    libsqlite3-dev
+  
+  cd "$HOME/src"
+  rm -rf sqlite*
+  wget http://www.sqlite.org/2015/$tarball
+  tar xzf $tarball
+  
+  cd $package
+  ./configure && make && sudo make install
+fi
