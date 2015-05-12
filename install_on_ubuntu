@@ -116,12 +116,6 @@ sudo apt-get install -y \
                       tmate \
                       direnv
 
-#if [ -z "$(which google-chrome-stable)" ]; then
-  #log "Installing Chrome"
-  #wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  #sudo dpkg -i google-chrome-stable_current_amd64.deb
-#fi
-
 if [ -z "ls /etc/apt/sources.list.d/google-chrome.list" ]; then
   log "Installing Chrome"
   add_key "https://dl-ssl.google.com/linux/linux_signing_key.pub"
