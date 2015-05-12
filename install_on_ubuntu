@@ -24,7 +24,6 @@ function add_key {
   wget -qO - "$url" | sudo apt-key add -
 }
 
-add_ppa "saiarcot895/myppa"
 add_ppa "git-core/ppa" "git"
 add_ppa "chris-lea/node.js", "node_js"
 add_ppa "indicator-multiload/stable-daily" "indicator-multiload"
