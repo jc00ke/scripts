@@ -176,6 +176,12 @@ if [ -z "$(ls ~/.oh-my-fish)" ]; then
   git clone git://github.com/bpinto/oh-my-fish.git ~/.oh-my-fish
 fi
 
+if [ -z "$(ls ~/projects/dotfiles)" ]; then
+  git clone https://github.com/jc00ke/dotfiles.git ~/projects/dotfiles
+  cd ~/projects/dotfiles
+  source install
+fi
+
 if [ -z "$(ls ~/.vim/bundle/Vundle.vim)" ]; then
   git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   vim +PluginInstall +qall
