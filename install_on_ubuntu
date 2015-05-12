@@ -171,5 +171,7 @@ if [ -z "$(which chruby)" ]; then
   install_postmodern_package "chruby" "0.3.9"
 fi
 
-log "Install oh-my-fish"
-git clone git://github.com/bpinto/oh-my-fish.git ~/.oh-my-fish
+if [ -z "$(ls ~/.oh-my-fish)" ]; then
+  log "Install oh-my-fish"
+  git clone git://github.com/bpinto/oh-my-fish.git ~/.oh-my-fish
+fi
