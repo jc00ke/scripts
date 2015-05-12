@@ -175,3 +175,9 @@ if [ -z "$(ls ~/.oh-my-fish)" ]; then
   log "Install oh-my-fish"
   git clone git://github.com/bpinto/oh-my-fish.git ~/.oh-my-fish
 fi
+
+if [ -z "$(ls ~/.vim/bundle/Vundle.vim)" ]; then
+  git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  vim +PluginInstall +qall
+fi
+
