@@ -61,7 +61,7 @@ log "Dist upgrade"
 sudo apt-get dist-upgrade
 
 log "Install all the things"
-sudo apt-get install -y \
+sudo apt-fast install -y \
                       build-essential \
                       bison \
                       vim-gtk \
@@ -91,8 +91,6 @@ sudo apt-get install -y \
                       fish \
                       silversearcher-ag \
                       unetbootin \
-                      fluxgui \
-                      byzanz \
                       insync \
                       postgresql-9.4 \
                       pgadmin3 \
@@ -133,7 +131,7 @@ fi
 #  add_key "http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc"
 
 #  sudo apt-get update
-#  sudo apt-get install -y dkms virtualbox-4.3
+#  sudo apt-fast install -y dkms virtualbox-4.3
 #fi
 
 
@@ -141,7 +139,7 @@ if [ -z "$(which sqlite3)" ]; then
   version="3081000"
   package="sqlite-autoconf-$version"
   tarball="$package.tar.gz"
-  sudo apt-get install -y \
+  sudo apt-fast install -y \
     libsqlite3-dev
 
   cd "$HOME/src"
@@ -186,4 +184,6 @@ if [ -z "$(ls ~/.vim/bundle/Vundle.vim)" ]; then
   git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   vim +PluginInstall +qall
 fi
+
+sudo apt-fast install -y byzanz fluxgui
 
