@@ -152,7 +152,7 @@ if [ -z "$(which sqlite3)" ]; then
   ./configure && make && sudo make install
 fi
 
-function install_postmodern_thing {
+function install_postmodern_package {
   package="$1"
   version="$2"
   tarball="${package}-${version}.tar.gz"
@@ -163,10 +163,12 @@ function install_postmodern_thing {
 }
 
 if [ -z "$(which ruby-install)" ]; then
+  log "Installing ruby-install"
   install_postmodern_package "ruby-install" "0.5.0"
 fi
 
-if [ -z "$(which chruby)" ]; then
+if [ -z "$(which chruby-exec)" ]; then
+  log "Installing chruby"
   install_postmodern_package "chruby" "0.3.9"
 fi
 
