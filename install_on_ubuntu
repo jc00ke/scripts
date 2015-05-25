@@ -187,6 +187,7 @@ if [ -z "$(ls ~/projects/dotfiles)" ]; then
 fi
 
 if [ -z "$(ls ~/.vim/bundle/Vundle.vim)" ]; then
+  log "Installing Vundle"
   git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   vim +PluginInstall +qall
 fi
