@@ -10,6 +10,8 @@ function log {
 log "Adding the repos to /etc/apt/sources.list.d/"
 
 RELEASE="$(lsb_release -sc)"
+ME="$(whoami)"
+
 function add_ppa {
   ppa="$1"
   pattern="$2"
@@ -178,9 +180,10 @@ if [ -z "$(ls ~/.oh-my-fish)" ]; then
 fi
 
 if [ -z "$(ls ~/projects/dotfiles)" ]; then
+  log "Installing dotfiles"
+  mkdir -p ~/projects
   git clone https://github.com/jc00ke/dotfiles.git ~/projects/dotfiles
-  cd ~/projects/dotfiles
-  source install
+  source ~/projects/dotfiles/install
 fi
 
 if [ -z "$(ls ~/.vim/bundle/Vundle.vim)" ]; then
