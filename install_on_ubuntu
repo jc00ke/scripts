@@ -117,22 +117,23 @@ sudo apt-fast install -y \
                       tmux \
                       tmate \
                       direnv \
-                      google-chrome-stable
+                      google-chrome-stable \
+                      font-manager
 
 if [ -z "$(which heroku)" ]; then
   log "Installing Heroku Toolbelt"
   wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 fi
 
-#if [ -z "$(which vboxmanage)" ]; then
-#  sudo sh -c "echo 'deb http://download.virtualbox.org/virtualbox/debian $RELEASE contrib' > /etc/apt/sources.list.d/virtualbox.list"
+if [ -z "$(which vboxmanage)" ]; then
+  sudo sh -c "echo 'deb http://download.virtualbox.org/virtualbox/debian $RELEASE contrib' > /etc/apt/sources.list.d/virtualbox.list"
 
-#  log "Install the apt-secure key"
-#  add_key "http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc"
+  log "Install the apt-secure key"
+  add_key "http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc"
 
-#  sudo apt-get update
-#  sudo apt-fast install -y dkms virtualbox-4.3
-#fi
+  sudo apt-get update
+  sudo apt-fast install -y dkms virtualbox-4.3
+fi
 
 
 if [ -z "$(which sqlite3)" ]; then
