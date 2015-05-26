@@ -201,5 +201,20 @@ if [ -z "$(ls ~/.config/fish)" ]; then
   chsh -s /usr/bin/fish
 fi
 
+log "Installing jq"
+wget http://stedolan.github.io/jq/download/linux64/jq
+chmod +x jq
+sudo mv jq /usr/local/bin/
+
+if [ -z "$(which direnv)" ]; then
+  url="$(
+    curl -s "https://api.github.com/repos/zimbatm/direnv/releases/latest" | \
+    jq '.assets | .[] | { name: .name, url: .browser_download_url } | select(.name == "direnv.linux-amd64") | .url' \
+    )"
+  wget $url
+  chmod +x direnv.linux-amd64
+  sudo mv direnv.linux-amd64 /usr/local/bin/direnv
+fi
+
 sudo apt-fast install -y byzanz fluxgui
 
