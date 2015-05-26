@@ -11,6 +11,8 @@ log "Adding the repos to /etc/apt/sources.list.d/"
 
 RELEASE="$(lsb_release -sc)"
 ME="$(whoami)"
+mkdir -p ~/projects
+mkdir -p ~/src
 
 function add_ppa {
   ppa="$1"
@@ -183,7 +185,6 @@ fi
 
 if [ -z "$(ls ~/projects/dotfiles)" ]; then
   log "Installing dotfiles"
-  mkdir -p ~/projects
   git clone https://github.com/jc00ke/dotfiles.git ~/projects/dotfiles
   source ~/projects/dotfiles/install
 fi
