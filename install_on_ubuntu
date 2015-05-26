@@ -195,5 +195,11 @@ if [ -z "$(ls ~/.vim/bundle/Vundle.vim)" ]; then
   vim +PluginInstall +qall
 fi
 
+if [ -z "$(ls ~/.config/fish)" ]; then
+  log "Installing fish config"
+  git clone https://github.com/jc00ke/fish-config.git ~/.config/fish
+  chsh -s /usr/bin/fish
+fi
+
 sudo apt-fast install -y byzanz fluxgui
 
