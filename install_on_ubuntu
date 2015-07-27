@@ -57,6 +57,11 @@ fi
 log "Removing unnused software"
 sudo apt-get remove -y evolution firefox
 
+
+
+log "Removing LibreOffice"
+sudo dpkg -l | grep office | awk '{ print $2 }' | xargs sudo apt-get remove -y
+
 log "Installing the software"
 sudo apt-get update
 log "Installing apt-fast"
