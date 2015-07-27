@@ -54,10 +54,8 @@ if [ -z "$(ls /etc/apt/sources.list.d/google-chrome.list)" ]; then
   sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb stable main" > /etc/apt/sources.list.d/google-chrome.list'
 fi
 
-log "Removing unnused software"
-sudo apt-get remove -y evolution firefox
-
-
+log "Removing firefox"
+sudo apt-get remove -y firefox
 
 log "Removing LibreOffice"
 sudo dpkg -l | grep office | awk '{ print $2 }' | xargs sudo apt-get remove -y
