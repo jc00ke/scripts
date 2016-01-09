@@ -185,7 +185,7 @@ fi
 
 if [ -z "$(ls ~/.oh-my-fish)" ]; then
   log "Install oh-my-fish"
-  git clone git://github.com/bpinto/oh-my-fish.git ~/.oh-my-fish
+  curl -L http://git.io/omf | sh
 fi
 
 if [ -z "$(ls ~/projects/dotfiles)" ]; then
