@@ -33,7 +33,7 @@ add_ppa "indicator-multiload/stable-daily" "indicator-multiload"
 add_ppa "shutter/ppa" "shutter"
 add_ppa "yorba/ppa" "yorba"
 add_ppa "ubuntuhandbook1/corebird" "corebird"
-add_ppa "nviennot/tmate" "tmate"
+add_ppa "tmate.io/archive" "tmate"
 add_ppa "saiarcot895/myppa" "saiarcot895" # for apt-fast
 add_ppa "fossfreedom/byzanz" "byzanz"
 add_ppa "kilian/f.lux" "f_lux"
@@ -129,7 +129,8 @@ sudo apt-fast install -y \
                       direnv \
                       google-chrome-stable \
                       font-manager \
-                      indicator-sound-switcher
+                      indicator-sound-switcher \
+                      software-properties-common
 
 if [ -z "$(which heroku)" ]; then
   log "Installing Heroku Toolbelt"
