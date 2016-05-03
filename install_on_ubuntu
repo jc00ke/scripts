@@ -121,7 +121,6 @@ sudo apt-fast install -y \
                       network-manager-openconnect \
                       network-manager-openconnect-gnome \
                       unity-tweak-tool \
-                      laptop-mode-tools \
                       bleachbit \
                       python-software-properties \
                       tmux \
