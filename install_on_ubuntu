@@ -32,7 +32,6 @@ add_ppa "git-core/ppa" "git"
 add_ppa "indicator-multiload/stable-daily" "indicator-multiload"
 add_ppa "shutter/ppa" "shutter"
 add_ppa "yorba/ppa" "yorba"
-add_ppa "ubuntuhandbook1/corebird" "corebird"
 add_ppa "tmate.io/archive" "tmate"
 add_ppa "saiarcot895/myppa" "saiarcot895" # for apt-fast
 add_ppa "fossfreedom/byzanz" "byzanz"
@@ -116,7 +115,6 @@ sudo apt-fast install -y \
                       wmctrl \
                       geary \
                       california \
-                      corebird \
                       openconnect \
                       network-manager-openconnect \
                       network-manager-openconnect-gnome \
