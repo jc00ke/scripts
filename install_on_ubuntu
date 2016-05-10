@@ -36,6 +36,7 @@ add_ppa "saiarcot895/myppa" "saiarcot895" # for apt-fast
 add_ppa "fossfreedom/byzanz" "byzanz"
 add_ppa "kilian/f.lux" "f_lux"
 add_ppa "yktooo/ppa", "sound-switcher"
+add_ppa "eosrei/fonts", "eosrei"
 sudo sed -i 's/vivid/trusty/' /etc/apt/sources.list.d/kilian-ubuntu-f_lux-vivid.list
 sudo sed -i 's/vivid/trusty/' /etc/apt/sources.list.d/fossfreedom-ubuntu-byzanz-vivid.list
 
@@ -124,7 +125,8 @@ sudo apt-fast install -y \
                       google-chrome-stable \
                       font-manager \
                       indicator-sound-switcher \
-                      software-properties-common
+                      software-properties-common \
+                      fonts-emojione-svginot
 
 if [ -z "$(which heroku)" ]; then
   log "Installing Heroku Toolbelt"
