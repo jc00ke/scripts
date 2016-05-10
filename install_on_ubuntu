@@ -33,7 +33,7 @@ add_ppa "indicator-multiload/stable-daily" "indicator-multiload"
 add_ppa "shutter/ppa" "shutter"
 add_ppa "tmate.io/archive" "tmate"
 add_ppa "saiarcot895/myppa" "saiarcot895" # for apt-fast
-add_ppa "fossfreedom/byzanz" "byzanz"
+add_ppa "nilarimogard/webupd8" "byzanz"
 add_ppa "nathan-renniewaldock/flux" "flux"
 add_ppa "yktooo/ppa", "sound-switcher"
 add_ppa "eosrei/fonts", "eosrei"
@@ -126,7 +126,9 @@ sudo apt-fast install -y \
                       font-manager \
                       indicator-sound-switcher \
                       software-properties-common \
-                      fonts-emojione-svginot
+                      fonts-emojione-svginot \
+                      imagemagick \
+                      slop
 
 if [ -z "$(which heroku)" ]; then
   log "Installing Heroku Toolbelt"
@@ -220,5 +222,6 @@ fi
 
 sudo apt-fast install -y byzanz fluxgui
 
+log "Install record-desktop: https://www.npmjs.com/package/record-desktop"
 log "Install some fonts"
 log "http://sourcefoundry.org/hack/"
