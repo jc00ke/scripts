@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sudo apt-get install \
+  xserver-xorg-input-libinput
+
