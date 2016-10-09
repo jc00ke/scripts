@@ -225,3 +225,19 @@ sudo apt-fast install -y byzanz fluxgui
 log "Install record-desktop: https://www.npmjs.com/package/record-desktop"
 log "Install some fonts"
 log "http://sourcefoundry.org/hack/"
+
+log "Install Noto"
+
+mkdir ~/Downloads/noto
+cd ~/Downloads/noto
+wget https://noto-website.storage.googleapis.com/pkgs/NotoSans-hinted.zip \
+		 https://noto-website.storage.googleapis.com/pkgs/NotoSerif-hinted.zip \
+		 https://noto-website.storage.googleapis.com/pkgs/NotoColorEmoji-unhinted.zip \
+		 https://noto-website.storage.googleapis.com/pkgs/NotoEmoji-unhinted.zip \
+		 https://noto-website.storage.googleapis.com/pkgs/NotoMono-hinted.zip \
+		 https://noto-website.storage.googleapis.com/pkgs/NotoSansSymbols-unhinted.zip
+unzip -n "*.zip"
+sudo mkdir -p /usr/share/fonts/opentype/noto
+sudo cp "*.ttf" /usr/share/fonts/opentype/noto
+sudo fc-cache -f -v
+
