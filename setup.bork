@@ -1,0 +1,202 @@
+#!/bin/bash
+
+
+function log {
+  msg="$1"
+  echo "********************************************"
+  echo "$msg"
+  echo "********************************************"
+  echo ""
+}
+log "Install ssh keys then comment out these lines"
+return 42
+log "Adding the repos to /etc/apt/sources.list.d/"
+
+RELEASE="$(lsb_release -sc)"
+ME="$(whoami)"
+
+function add_ppa {
+  ppa="$1"
+  package="$2"
+  log "Adding $ppa for $package"
+  sudo sh -c "add-apt-repository -y ppa:$ppa"
+}
+
+function add_key {
+  url="$1"
+  wget -qO - "$url" | sudo apt-key add -
+}
+
+function edit_ppa {
+  from="$1"
+  to="$2"
+  list="$3"
+  sudo sed -i "s/$from/$to/" "/etc/apt/sources.list.d/$list.list"
+}
+
+function url_for_latest_release_from_github {
+  user="$1"
+  repo="$2"
+  package="$3"
+
+  curl -sL "https://api.github.com/repos/$user/$repo/releases/latest" | \
+    jq ".assets | .[] | {name: .name, url: .browser_download_url} | select(.name | test(\"$package\")) | .url"
+}
+
+add_ppa "git-core/ppa" "git-core"
+add_ppa "neovim-ppa/unstable" "neovim"
+add_ppa "shutter/ppa" "shutter"
+add_ppa "tmate.io/archive" "tmate"
+add_ppa "nathan-renniewaldock/flux" "flux"
+add_ppa "eosrei/fonts" "eosrei"
+edit_ppa "yakkety" "xenial" "shutter-ubuntu-ppa-yakkety"
+edit_ppa "yakkety" "trusty" "nathan-renniewaldock-ubuntu-flux-yakkety"
+edit_ppa "yakkety" "xenial" "tmate_io-ubuntu-archive-yakkety"
+
+if [ -z "$(ls /etc/apt/sources.list.d/insync.list)" ]; then
+  add_key "https://d2t3ff60b2tol4.cloudfront.net/services@insynchq.com.gpg.key"
+  sudo sh -c "echo 'deb http://apt.insynchq.com/ubuntu $RELEASE non-free' > /etc/apt/sources.list.d/insync.list"
+fi
+
+if [ -z "$(ls /etc/apt/sources.list.d/google-chrome.list)" ]; then
+  add_key "https://dl-ssl.google.com/linux/linux_signing_key.pub"
+  sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb stable main" > /etc/apt/sources.list.d/google-chrome.list'
+fi
+
+sudo apt-get update
+
+ok directory $HOME/projects
+ok directory $HOME/src
+
+sudo apt-get install -y \
+  build-essential \
+  bison \
+  shutter \
+  xclip \
+  htop \
+  curl \
+  git \
+  git-doc \
+  git-svn \
+  git-gui \
+  gitg \
+  libffi-dev \
+  libreadline-dev \
+  libssl-dev \
+  zlib1g-dev \
+  libncurses5-dev \
+  libxml2-dev \
+  libxslt1-dev \
+  libyaml-dev \
+  libgdbm-dev \
+  parallel \
+  fish \
+  insync \
+  autoconf \
+  autopoint \
+  libtool \
+  exuberant-ctags \
+  openconnect \
+  network-manager-openconnect \
+  network-manager-openconnect-gnome \
+  tmux \
+  tmate \
+  google-chrome-stable \
+  font-manager \
+  software-properties-common \
+  fonts-emojione-svginot \
+  imagemagick \
+  fluxgui \
+  neovim
+
+ok github $HOME/bin jc00ke/bin --ssh
+
+sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+sudo update-alternatives --config vi
+sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+sudo update-alternatives --config vim
+sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+sudo update-alternatives --config editor
+
+cd $HOME/src
+
+function install_postmodern_package {
+  package="$1"
+  version="$2"
+  tarball="${package}-${version}.tar.gz"
+  wget -O "$tarball" "https://github.com/postmodern/${package}/archive/v${version}.tar.gz"
+  tar -xzvf "$tarball"
+  cd "${package}-${version}/"
+  sudo make install
+}
+
+if [ -z "$(which ruby-install)" ]; then
+  log "Installing ruby-install"
+  install_postmodern_package "ruby-install" "0.6.0"
+fi
+
+if [ -z "$(which chruby-exec)" ]; then
+  log "Installing chruby"
+  install_postmodern_package "chruby" "0.3.9"
+fi
+
+wget -O chruby-fish-0.8.0.tar.gz https://github.com/JeanMertz/chruby-fish/archive/v0.8.0.tar.gz
+tar -xzvf chruby-fish-0.8.0.tar.gz
+cd chruby-fish-0.8.0/
+sudo make install
+cd $HOME/src
+
+if [ ! -d "$HOME/.config/omf" ]; then
+  log "Install oh-my-fish"
+  curl -L http://get.oh-my.fish | fish
+fi
+
+if [ -z "$(which jq)" ]; then
+  package="jq-linux"
+  log "Install $package"
+  wget "https://github.com/stedolan/jq/releases/download/jq-1.5/jq"
+  chmod +x $package
+  sudo mv $package /usr/local/bin/jq
+fi
+
+if [ -z "$(which direnv)" ]; then
+  package="direnv.linux-amd64"
+  log "Install $package"
+  url=url_for_latest_release_from_github "zimbatm" "direnv" $package
+  wget "$url"
+  chmod +x $package
+  sudo mv $package /usr/local/bin/direnv
+fi
+
+if [ -z "$(which hub)" ]; then
+  package="hub-linux-amd64-2.2.9"
+  log "Install $package"
+  url=url_for_latest_release_from_github "github" "hub" $package
+  wget "$url"
+  tar xf "$package.tgz"
+  cd $package
+  sudo ./install
+fi
+
+cd $HOME
+ok github $HOME/.asdf asdf-vm/asdf
+ok github $HOME/projects/dotfiles jc00ke/dotfiles --ssh
+for file in $HOME/projects/dotfiles/*
+do
+  rm -f ".$(basename $file)"
+  ok symlink ".$(basename $file)" $file
+done
+rm -f $HOME/.vimrc
+rm -rf $HOME/.config/fish
+
+ok github $HOME/.fzf junegunn/fzf
+$HOME/.fzf/install
+ok github $HOME/.config/fish jc00ke/fish-config --ssh
+chsh -s /usr/bin/fish
+
+ok directory $HOME/.config/nvim
+ok github $HOME/.config/nvim/bundle/Vundle.vim VundleVim/Vundle.vim
+ok symlink $HOME/.config/nvim/init.vim $HOME/projects/dotfiles/vimrc
+nvim +PluginInstall +qall
+
+cd $HOME
