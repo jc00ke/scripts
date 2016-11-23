@@ -178,6 +178,19 @@ if [ -z "$(which hub)" ]; then
   sudo ./install
 fi
 
+if [ -z "$(which rg)" ]; then
+  package="ripgrep-0.3.1-x86_64-unknown-linux-musl"
+  log "Install $package"
+  url=url_for_latest_release_from_github "BurntSushi" "ripgrep" $package
+  wget "$url"
+  tar xf "$package.tar.gz"
+  cd $package
+  sudo mv rg /usr/local/bin/
+  sudo mv rg.1 /usr/local/share/man/man1/
+  sudo mandb
+  sudo mv rg.fish /usr/share/fish/vendor_completions.d/
+fi
+
 cd $HOME
 ok github $HOME/.asdf asdf-vm/asdf
 ok github $HOME/projects/dotfiles jc00ke/dotfiles --ssh
