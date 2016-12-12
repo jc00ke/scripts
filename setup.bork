@@ -181,12 +181,13 @@ if [ -z "$(which hub)" ]; then
 fi
 
 if [ -z "$(which rg)" ]; then
-  package="ripgrep-0.3.1-x86_64-unknown-linux-musl"
+  package="x86_64-unknown-linux-musl"
   log "Install $package"
   url=url_for_latest_release_from_github "BurntSushi" "ripgrep" $package
   wget "$url"
-  tar xf "$package.tar.gz"
-  cd $package
+  archive="${url##*/}"
+  tar xf "$archive"
+  cd "${archive%.tar.gz}"
   sudo mv rg /usr/local/bin/
   sudo mv rg.1 /usr/local/share/man/man1/
   sudo mandb
