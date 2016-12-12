@@ -107,7 +107,8 @@ sudo apt-get install -y \
   fonts-emojione-svginot \
   imagemagick \
   fluxgui \
-  neovim
+  neovim \
+  ttf-bitstream-vera
 
 ok github $HOME/bin jc00ke/bin --ssh
 
@@ -237,5 +238,14 @@ unzip -n "*.zip"
 sudo mkdir -p /usr/share/fonts/opentype/noto
 sudo cp "*.ttf" /usr/share/fonts/opentype/noto
 sudo fc-cache -f -v
+
+cd $HOME/src
+package="EmojiOneColor-SVGinOT-Linux"
+url=$(url_for_latest_release_from_github "eosrei" "emojione-color-font" "$package")
+archive="${url##*/}"
+wget $url
+tar xf "$archive"
+cd "${archive%.tar.gz}"
+./install.sh
 
 cd $HOME
