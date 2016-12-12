@@ -170,12 +170,13 @@ if [ -z "$(which direnv)" ]; then
 fi
 
 if [ -z "$(which hub)" ]; then
-  package="hub-linux-amd64-2.2.9"
+  package="hub-linux-amd64"
   log "Install $package"
   url=url_for_latest_release_from_github "github" "hub" $package
   wget "$url"
-  tar xf "$package.tgz"
-  cd $package
+  archive="${url##*/}"
+  tar xf "$archive"
+  cd "${archive%.tgz}"
   sudo ./install
 fi
 
