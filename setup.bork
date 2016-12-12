@@ -40,7 +40,7 @@ function url_for_latest_release_from_github {
   package="$3"
 
   curl -sL "https://api.github.com/repos/$user/$repo/releases/latest" | \
-    jq ".assets | .[] | {name: .name, url: .browser_download_url} | select(.name | test(\"$package\")) | .url"
+    jq -r ".assets | .[] | {name: .name, url: .browser_download_url} | select(.name | test(\"$package\")) | .url"
 }
 
 add_ppa "git-core/ppa" "git-core"
