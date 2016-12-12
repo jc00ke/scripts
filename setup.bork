@@ -220,5 +220,22 @@ ok symlink $HOME/src/node $HOME/src/node-v$node_version-linux-x64
 ok symlink $HOME/src/bin/node $HOME/src/node/bin/node
 ok symlink $HOME/src/bin/npm $HOME/src/node/bin/npm
 
+cd $HOME
+
+log "Install Noto"
+
+ok directory $HOME/src/noto
+cd $HOME/src/noto
+wget \
+  https://noto-website.storage.googleapis.com/pkgs/NotoSans-hinted.zip \
+  https://noto-website.storage.googleapis.com/pkgs/NotoSerif-hinted.zip \
+  https://noto-website.storage.googleapis.com/pkgs/NotoColorEmoji-unhinted.zip \
+  https://noto-website.storage.googleapis.com/pkgs/NotoEmoji-unhinted.zip \
+  https://noto-website.storage.googleapis.com/pkgs/NotoMono-hinted.zip \
+  https://noto-website.storage.googleapis.com/pkgs/NotoSansSymbols-unhinted.zip
+unzip -n "*.zip"
+sudo mkdir -p /usr/share/fonts/opentype/noto
+sudo cp "*.ttf" /usr/share/fonts/opentype/noto
+sudo fc-cache -f -v
 
 cd $HOME
