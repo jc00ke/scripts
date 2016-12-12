@@ -251,3 +251,4 @@ cd "${archive%.tar.gz}"
 ./install.sh
 
 cd $HOME
+curl 'https://raw.githubusercontent.com/heewa/bae/master/emoji_vars.fish' > ~/.emoji_vars.fish
