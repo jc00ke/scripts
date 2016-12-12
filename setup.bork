@@ -212,4 +212,13 @@ ok github $HOME/.config/nvim/bundle/Vundle.vim VundleVim/Vundle.vim
 ok symlink $HOME/.config/nvim/init.vim $HOME/projects/dotfiles/vimrc
 nvim +PluginInstall +qall
 
+cd $HOME/src
+node_version="6.9.1"
+ok download https://nodejs.org/dist/v$node_version/node-v$node_version-linux-x64.tar.xz
+tar xf node-v$node_version-linux-x64.tar.xz
+ok symlink $HOME/src/node $HOME/src/node-v$node_version-linux-x64
+ok symlink $HOME/src/bin/node $HOME/src/node/bin/node
+ok symlink $HOME/src/bin/npm $HOME/src/node/bin/npm
+
+
 cd $HOME
