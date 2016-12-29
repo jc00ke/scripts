@@ -211,9 +211,11 @@ ok github $HOME/.config/fish jc00ke/fish-config --ssh
 chsh -s /usr/bin/fish
 
 ok directory $HOME/.config/nvim
-ok github $HOME/.config/nvim/bundle/Vundle.vim VundleVim/Vundle.vim
-ok symlink $HOME/.config/nvim/init.vim $HOME/projects/dotfiles/vimrc
-nvim +PluginInstall +qall
+ok symlink $HOME/.config/nvim/init.vim $HOME/projects/dotfiles/init.vim
+nvim +PlugInstall +qall
+
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 cd $HOME/src
 node_version="6.9.1"
