@@ -133,7 +133,7 @@ function install_postmodern_package {
 
 if [ -z "$(which ruby-install)" ]; then
   log "Installing ruby-install"
-  install_postmodern_package "ruby-install" "0.6.0"
+  install_postmodern_package "ruby-install" "0.6.1"
 fi
 
 if [ -z "$(which chruby-exec)" ]; then
