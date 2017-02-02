@@ -254,3 +254,12 @@ cd "${archive%.tar.gz}"
 
 cd $HOME
 curl 'https://raw.githubusercontent.com/heewa/bae/master/emoji_vars.fish' > ~/.emoji_vars.fish
+
+log "Install GNOME extensions"
+log "https://extensions.gnome.org/extension/1113/nothing-to-say/"
+log "dconf write /org/gnome/shell/extensions/nothing-to-say/keybinding-toggle-mute '[\"<Control>space\", \"Pause\"]'"
+log "https://extensions.gnome.org/extension/15/alternatetab/"
+log "https://extensions.gnome.org/extension/1162/emoji-selector/"
+log "https://extensions.gnome.org/extension/657/shelltile/"
+log "https://extensions.gnome.org/extension/826/suspend-button/"
+log "https://extensions.gnome.org/extension/484/workspace-grid/"
