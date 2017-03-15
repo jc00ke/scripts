@@ -104,11 +104,11 @@ sudo apt-get install -y \
   google-chrome-stable \
   font-manager \
   software-properties-common \
-  fonts-emojione-svginot \
   imagemagick \
   fluxgui \
   neovim \
-  ttf-bitstream-vera
+  fonts-noto \
+  fonts-noto-mono
 
 ok github $HOME/bin jc00ke/bin --ssh
 
@@ -227,20 +227,7 @@ ok symlink $HOME/src/bin/npm $HOME/src/node/bin/npm
 
 cd $HOME
 
-log "Install Noto"
-
-ok directory $HOME/src/noto
-cd $HOME/src/noto
-wget \
-  https://noto-website.storage.googleapis.com/pkgs/NotoSans-hinted.zip \
-  https://noto-website.storage.googleapis.com/pkgs/NotoSerif-hinted.zip \
-  https://noto-website.storage.googleapis.com/pkgs/NotoColorEmoji-unhinted.zip \
-  https://noto-website.storage.googleapis.com/pkgs/NotoEmoji-unhinted.zip \
-  https://noto-website.storage.googleapis.com/pkgs/NotoMono-hinted.zip \
-  https://noto-website.storage.googleapis.com/pkgs/NotoSansSymbols-unhinted.zip
-unzip -n "*.zip"
-sudo mkdir -p "/usr/share/fonts/opentype/noto"
-sudo cp "*.ttf" "/usr/share/fonts/opentype/noto"
+log "Install Source Code Pro font"
 sudo git \
   clone \
   --depth 1 \
@@ -248,15 +235,6 @@ sudo git \
   "https://github.com/adobe-fonts/source-code-pro.git" \
   "/usr/share/fonts/opentype/source-code-pro"
 sudo fc-cache -f -v
-
-cd $HOME/src
-package="EmojiOneColor-SVGinOT-Linux"
-url=$(url_for_latest_release_from_github "eosrei" "emojione-color-font" "$package")
-archive="${url##*/}"
-wget $url
-tar xf "$archive"
-cd "${archive%.tar.gz}"
-./install.sh
 
 cd $HOME
 curl 'https://raw.githubusercontent.com/heewa/bae/master/emoji_vars.fish' > ~/.emoji_vars.fish
