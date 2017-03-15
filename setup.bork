@@ -239,8 +239,14 @@ wget \
   https://noto-website.storage.googleapis.com/pkgs/NotoMono-hinted.zip \
   https://noto-website.storage.googleapis.com/pkgs/NotoSansSymbols-unhinted.zip
 unzip -n "*.zip"
-sudo mkdir -p /usr/share/fonts/opentype/noto
-sudo cp "*.ttf" /usr/share/fonts/opentype/noto
+sudo mkdir -p "/usr/share/fonts/opentype/noto"
+sudo cp "*.ttf" "/usr/share/fonts/opentype/noto"
+sudo git \
+  clone \
+  --depth 1 \
+  --branch release \
+  "https://github.com/adobe-fonts/source-code-pro.git" \
+  "/usr/share/fonts/opentype/source-code-pro"
 sudo fc-cache -f -v
 
 cd $HOME/src
