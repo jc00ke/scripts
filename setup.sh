@@ -8,8 +8,14 @@ function log {
   echo "********************************************"
   echo ""
 }
-log "Install ssh keys then comment out these lines"
-return 42
+if [ ! -d "$HOME/.ssh" ]; then
+  log "You need SSH keys or this isn't gonna do much"
+  exit 42
+fi
+ssh-agent -s
+ssh-add $HOME/.ssh/id_rsa
+
+
 log "Adding the repos to /etc/apt/sources.list.d/"
 
 RELEASE="$(lsb_release -sc)"
@@ -38,20 +44,18 @@ function url_for_latest_release_from_github {
   user="$1"
   repo="$2"
   package="$3"
+  query=".assets | .[] | {name: .name, url: .browser_download_url} | select(.name | test(\"$package\")) | .url"
 
-  curl -sL "https://api.github.com/repos/$user/$repo/releases/latest" | \
-    jq -r ".assets | .[] | {name: .name, url: .browser_download_url} | select(.name | test(\"$package\")) | .url"
+  curl -sL "https://api.github.com/repos/$user/$repo/releases/latest" | jq -r "$query"
 }
 
 add_ppa "git-core/ppa" "git-core"
 add_ppa "neovim-ppa/unstable" "neovim"
 add_ppa "shutter/ppa" "shutter"
 add_ppa "tmate.io/archive" "tmate"
-add_ppa "nathan-renniewaldock/flux" "flux"
-add_ppa "eosrei/fonts" "eosrei"
-edit_ppa "yakkety" "xenial" "shutter-ubuntu-ppa-yakkety"
-edit_ppa "yakkety" "trusty" "nathan-renniewaldock-ubuntu-flux-yakkety"
-edit_ppa "yakkety" "xenial" "tmate_io-ubuntu-archive-yakkety"
+edit_ppa "zesty" "xenial" "shutter-ubuntu-ppa-zesty"
+edit_ppa "zesty" "yakkety" "tmate_io-ubuntu-archive-zesty"
+edit_ppa "zesty" "yakkety" "insync"
 
 if [ -z "$(ls /etc/apt/sources.list.d/insync.list)" ]; then
   add_key "https://d2t3ff60b2tol4.cloudfront.net/services@insynchq.com.gpg.key"
@@ -64,9 +68,6 @@ if [ -z "$(ls /etc/apt/sources.list.d/google-chrome.list)" ]; then
 fi
 
 sudo apt-get update
-
-ok directory $HOME/projects
-ok directory $HOME/src
 
 sudo apt-get install -y \
   build-essential \
@@ -105,12 +106,19 @@ sudo apt-get install -y \
   font-manager \
   software-properties-common \
   imagemagick \
-  fluxgui \
   neovim \
   fonts-noto \
   fonts-noto-mono
 
-ok github $HOME/bin jc00ke/bin --ssh
+if [ ! -d $HOME/projects ]; then
+  mkdir -p $HOME/projects
+fi
+if [ ! -d $HOME/src ]; then
+  mkdir -p $HOME/src
+fi
+if [ ! -d $HOME/bin ]; then
+  git clone https://github.com/jc00ke/bin.git
+fi
 
 sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
 sudo update-alternatives --config vi
@@ -153,9 +161,9 @@ if [ ! -d "$HOME/.config/omf" ]; then
 fi
 
 if [ -z "$(which jq)" ]; then
-  package="jq-linux"
+  package="jq-linux64"
   log "Install $package"
-  wget "https://github.com/stedolan/jq/releases/download/jq-1.5/jq"
+  wget "https://github.com/stedolan/jq/releases/download/jq-1.5/$package"
   chmod +x $package
   sudo mv $package /usr/local/bin/jq
 fi
@@ -163,7 +171,7 @@ fi
 if [ -z "$(which direnv)" ]; then
   package="direnv.linux-amd64"
   log "Install $package"
-  url=url_for_latest_release_from_github "zimbatm" "direnv" $package
+  url=$(url_for_latest_release_from_github "zimbatm" "direnv" "$package")
   wget "$url"
   chmod +x $package
   sudo mv $package /usr/local/bin/direnv
@@ -172,7 +180,7 @@ fi
 if [ -z "$(which hub)" ]; then
   package="hub-linux-amd64"
   log "Install $package"
-  url=url_for_latest_release_from_github "github" "hub" $package
+  url=$(url_for_latest_release_from_github "github" "hub" "$package")
   wget "$url"
   archive="${url##*/}"
   tar xf "$archive"
@@ -183,67 +191,80 @@ fi
 if [ -z "$(which rg)" ]; then
   package="x86_64-unknown-linux-musl"
   log "Install $package"
-  url=url_for_latest_release_from_github "BurntSushi" "ripgrep" $package
+  url=$(url_for_latest_release_from_github "BurntSushi" "ripgrep" "$package")
   wget "$url"
   archive="${url##*/}"
   tar xf "$archive"
   cd "${archive%.tar.gz}"
-  sudo mv rg /usr/local/bin/
-  sudo mv rg.1 /usr/local/share/man/man1/
+  sudo mv rg "/usr/local/bin/"
+  sudo mv rg.1 "/usr/local/share/man/man1/"
   sudo mandb
-  sudo mv rg.fish /usr/share/fish/vendor_completions.d/
+  sudo mv "complete/rg.fish" "/usr/share/fish/vendor_completions.d/"
 fi
 
 cd $HOME
-ok github $HOME/.asdf asdf-vm/asdf
-ok github $HOME/projects/dotfiles jc00ke/dotfiles --ssh
+if [ ! -d $HOME/.asdf ]; then
+  git clone https://github.com/asdf-vm/asdf.git .asdf
+fi
+
+if [ ! -d $HOME/projects/dotfiles ]; then
+  git clone git@github.com:jc00ke/dotfiles.git projects/dotfiles
+fi
 for file in $HOME/projects/dotfiles/*
 do
-  rm -f ".$(basename $file)"
-  ok symlink ".$(basename $file)" $file
+  name="$(basename $file)"
+  rm -f ".$name"
+  ln -s "$HOME/projects/dotfiles/$name" "$HOME/.$name"
 done
-rm -f $HOME/.vimrc
-rm -rf $HOME/.config/fish
 
-ok github $HOME/.fzf junegunn/fzf
-$HOME/.fzf/install
-ok github $HOME/.config/fish jc00ke/fish-config --ssh
+rm -f $HOME/.vimrc
+
+if [ ! -d $HOME/.fzf ]; then
+  git clone https://github.com/junegunn/fzf .fzf
+  $HOME/.fzf/install
+fi
+
+rm -rf $HOME/.config/fish
+if [ ! -d $HOME/.config/fish ]; then
+  git clone git@github.com:jc00ke/fish-config.git "$HOME/.config/fish"
+fi
 chsh -s /usr/bin/fish
 
-ok directory $HOME/.config/nvim
-ok symlink $HOME/.config/nvim/init.vim $HOME/projects/dotfiles/init.vim
-nvim +PlugInstall +qall
+if [ ! -d $HOME/.config/nvim ]; then
+  mkdir -p $HOME/.config/nvim
+  ln -s "$HOME/projects/dotfiles/init.vim" "$HOME/.config/nvim/init.vim"
 
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  nvim +PlugInstall +qall
+fi
 
 cd $HOME/src
-node_version="6.9.1"
-ok download https://nodejs.org/dist/v$node_version/node-v$node_version-linux-x64.tar.xz
+node_version="7.7.4"
+wget https://nodejs.org/dist/v$node_version/node-v$node_version-linux-x64.tar.xz
 tar xf node-v$node_version-linux-x64.tar.xz
-ok symlink $HOME/src/node $HOME/src/node-v$node_version-linux-x64
-ok symlink $HOME/src/bin/node $HOME/src/node/bin/node
-ok symlink $HOME/src/bin/npm $HOME/src/node/bin/npm
+ln -s "$HOME/src/node-v$node_version-linux-x64" "$HOME/src/node"
 
 cd $HOME
 
-log "Install Source Code Pro font"
-sudo git \
-  clone \
-  --depth 1 \
-  --branch release \
-  "https://github.com/adobe-fonts/source-code-pro.git" \
-  "/usr/share/fonts/opentype/source-code-pro"
-sudo fc-cache -f -v
+if [ ! -d "/usr/share/fonts/opentype/source-code-pro" ]; then
+  log "Install Source Code Pro font"
+  sudo git \
+    clone \
+    --depth 1 \
+    --branch release \
+    "https://github.com/adobe-fonts/source-code-pro.git" \
+    "/usr/share/fonts/opentype/source-code-pro"
+  sudo fc-cache -f -v
+fi
 
 cd $HOME
 curl 'https://raw.githubusercontent.com/heewa/bae/master/emoji_vars.fish' > ~/.emoji_vars.fish
 
 log "Install GNOME extensions"
 log "https://extensions.gnome.org/extension/1113/nothing-to-say/"
-log "dconf write /org/gnome/shell/extensions/nothing-to-say/keybinding-toggle-mute '[\"<Control>space\", \"Pause\"]'"
+dconf write "/org/gnome/shell/extensions/nothing-to-say/keybinding-toggle-mute" "[\"<Control>space\", \"Pause\"]"
 log "https://extensions.gnome.org/extension/15/alternatetab/"
-log "https://extensions.gnome.org/extension/1162/emoji-selector/"
 log "https://extensions.gnome.org/extension/657/shelltile/"
 log "https://extensions.gnome.org/extension/826/suspend-button/"
 log "https://extensions.gnome.org/extension/484/workspace-grid/"
