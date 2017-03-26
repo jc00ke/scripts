@@ -106,6 +106,7 @@ sudo apt-get install -y \
   font-manager \
   software-properties-common \
   imagemagick \
+  python3-pip \
   neovim \
   fonts-noto \
   fonts-noto-mono
@@ -234,6 +235,7 @@ if [ ! -d $HOME/.config/nvim ]; then
   mkdir -p $HOME/.config/nvim
   ln -s "$HOME/projects/dotfiles/init.vim" "$HOME/.config/nvim/init.vim"
 
+  pip install wheel neovim
   curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   nvim +PlugInstall +qall
