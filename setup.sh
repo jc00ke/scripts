@@ -110,6 +110,9 @@ sudo apt-get install -y \
   neovim \
   fonts-noto \
   fonts-noto-mono \
+  gst-plugins-good \
+  gst-plugins-bad \
+  gstreamer1.0-libav \
   corebird
 
 if [ ! -d $HOME/projects ]; then
