@@ -109,7 +109,8 @@ sudo apt-get install -y \
   python3-pip \
   neovim \
   fonts-noto \
-  fonts-noto-mono
+  fonts-noto-mono \
+  corebird
 
 if [ ! -d $HOME/projects ]; then
   mkdir -p $HOME/projects
