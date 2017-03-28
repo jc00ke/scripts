@@ -158,14 +158,15 @@ wget -O chruby-fish-0.8.0.tar.gz https://github.com/JeanMertz/chruby-fish/archiv
 tar -xzvf chruby-fish-0.8.0.tar.gz
 cd chruby-fish-0.8.0/
 sudo make install
-cd $HOME/src
 
 if [ ! -d "$HOME/.config/omf" ]; then
+  cd $HOME/src
   log "Install oh-my-fish"
   curl -L http://get.oh-my.fish | fish
 fi
 
 if [ -z "$(which jq)" ]; then
+  cd $HOME/src
   package="jq-linux64"
   log "Install $package"
   wget "https://github.com/stedolan/jq/releases/download/jq-1.5/$package"
@@ -174,6 +175,7 @@ if [ -z "$(which jq)" ]; then
 fi
 
 if [ -z "$(which direnv)" ]; then
+  cd $HOME/src
   package="direnv.linux-amd64"
   log "Install $package"
   url=$(url_for_latest_release_from_github "zimbatm" "direnv" "$package")
@@ -183,6 +185,7 @@ if [ -z "$(which direnv)" ]; then
 fi
 
 if [ -z "$(which hub)" ]; then
+  cd $HOME/src
   package="hub-linux-amd64"
   log "Install $package"
   url=$(url_for_latest_release_from_github "github" "hub" "$package")
@@ -194,6 +197,7 @@ if [ -z "$(which hub)" ]; then
 fi
 
 if [ -z "$(which rg)" ]; then
+  cd $HOME/src
   package="x86_64-unknown-linux-musl"
   log "Install $package"
   url=$(url_for_latest_release_from_github "BurntSushi" "ripgrep" "$package")
