@@ -214,6 +214,11 @@ if [ -z "$(which rg)" ]; then
   sudo mv "complete/rg.fish" "/usr/share/fish/vendor_completions.d/"
 fi
 
+if [ -z "$(which rustc)" ]; then
+  log "Installing rustup for Rust and Cargo"
+  curl https://sh.rustup.rs -sSf | sh
+fi
+
 cd $HOME
 if [ ! -d $HOME/.asdf ]; then
   git clone https://github.com/asdf-vm/asdf.git .asdf
