@@ -219,6 +219,15 @@ if [ -z "$(which rustc)" ]; then
   curl https://sh.rustup.rs -sSf | sh
 fi
 
+if [ ! -d $HOME/src/alacritty ]; then
+  cd $HOME/src
+  git clone git@github.com:jwilm/alacritty.git
+  cd alacritty
+  ln -s $HOME/src/alacritty/Alacritty.desktop $HOME/.local/share/applications/Alacritty.desktop
+  cargo build --release
+  sudo cp target/release/alacritty /usr/local/bin
+fi
+
 cd $HOME
 if [ ! -d $HOME/.asdf ]; then
   git clone https://github.com/asdf-vm/asdf.git .asdf
