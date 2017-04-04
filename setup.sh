@@ -113,7 +113,10 @@ sudo apt-get install -y \
   gst-plugins-good \
   gst-plugins-bad \
   gstreamer1.0-libav \
-  corebird
+  corebird \
+  cmake \
+  libfreetype6-dev \
+  libfontconfig1-dev
 
 if [ ! -d $HOME/projects ]; then
   mkdir -p $HOME/projects
