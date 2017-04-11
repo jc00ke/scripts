@@ -291,6 +291,7 @@ curl 'https://raw.githubusercontent.com/heewa/bae/master/emoji_vars.fish' > ~/.e
 log "Install GNOME extensions"
 log "https://extensions.gnome.org/extension/1113/nothing-to-say/"
 dconf write "/org/gnome/shell/extensions/nothing-to-say/keybinding-toggle-mute" "[\"<Control>space\", \"Pause\"]"
+dconf write "/org/gnome/desktop/interface/enable-animations" false
 log "https://extensions.gnome.org/extension/15/alternatetab/"
 log "https://extensions.gnome.org/extension/657/shelltile/"
 log "https://extensions.gnome.org/extension/826/suspend-button/"
