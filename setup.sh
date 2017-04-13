@@ -53,6 +53,7 @@ add_ppa "git-core/ppa" "git-core"
 add_ppa "neovim-ppa/unstable" "neovim"
 add_ppa "shutter/ppa" "shutter"
 add_ppa "tmate.io/archive" "tmate"
+add_ppa "peek-developers" "stable"
 edit_ppa "zesty" "xenial" "shutter-ubuntu-ppa-zesty"
 edit_ppa "zesty" "yakkety" "tmate_io-ubuntu-archive-zesty"
 edit_ppa "zesty" "yakkety" "insync"
@@ -116,7 +117,8 @@ sudo apt-get install -y \
   corebird \
   cmake \
   libfreetype6-dev \
-  libfontconfig1-dev
+  libfontconfig1-dev \
+  peek
 
 if [ ! -d $HOME/projects ]; then
   mkdir -p $HOME/projects
