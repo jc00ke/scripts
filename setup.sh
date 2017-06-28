@@ -99,8 +99,10 @@ sudo apt-get install -y \
   libtool \
   exuberant-ctags \
   openconnect \
+  openvpn \
   network-manager-openconnect \
   network-manager-openconnect-gnome \
+  network-manager-openvpn-gnome \
   tmux \
   tmate \
   google-chrome-stable \
