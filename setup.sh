@@ -302,3 +302,7 @@ log "https://extensions.gnome.org/extension/826/suspend-button/"
 log "https://extensions.gnome.org/extension/484/workspace-grid/"
 log "https://extensions.gnome.org/extension/1031/topicons/"
 log "https://extensions.gnome.org/extension/967/hide-legacy-tray/"
+
+log "Enabling interactive search in Nautilus"
+# https://askubuntu.com/a/278553/128339
+gsettings set org.gnome.nautilus.preferences enable-interactive-search true
