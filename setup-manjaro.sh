@@ -103,7 +103,5 @@ if [ ! -d $HOME/.config/nvim ]; then
 fi
 
 # TODO
-# [ ] enable natural scrolling by default
 # [ ] get kb to automatically connect
 # [ ] get ssh-agent to work
-# [ ] pull down GPG key
