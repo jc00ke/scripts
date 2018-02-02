@@ -104,4 +104,3 @@ fi
 
 # TODO
 # [ ] get kb to automatically connect
-# [ ] get ssh-agent to work
