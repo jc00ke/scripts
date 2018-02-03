@@ -101,6 +101,3 @@ if [ ! -d $HOME/.config/nvim ]; then
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   nvim +PlugInstall +qall
 fi
-
-# TODO
-# [ ] get kb to automatically connect
