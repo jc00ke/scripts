@@ -90,6 +90,8 @@ do
   rm -f ".$name"
   ln -s "$HOME/projects/dotfiles/$name" "$HOME/.$name"
 done
+rm "$HOME/.i3config.conf"
+ln -sf "$HOME/projects/dotfiles/i3config.conf" "$HOME/.i3/config"
 
 rm -f $HOME/.vimrc
 if [ ! -d $HOME/.config/nvim ]; then
