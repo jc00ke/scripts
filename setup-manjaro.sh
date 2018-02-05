@@ -36,7 +36,13 @@ sudo pacman -S \
   hub \
   ripgrep \
   fzf \
-  pulseaudio
+  pulseaudio \
+  cmake \
+  freetype2 \
+  fontconfig \
+  pkg-config \
+  make \
+  xclip
 
 yaourt -S \
   peek \
@@ -103,3 +109,13 @@ if [ ! -d $HOME/.config/nvim ]; then
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   nvim +PlugInstall +qall
 fi
+
+asdf plugin-add rust https://github.com/code-lever/asdf-rust.git
+asdf install rust stable
+asdf global rust stable
+
+cd $HOME/src
+git clone git@github.com:jwilm/alacritty.git                                                                                                                                                  14:51:40
+cd alacritty
+cargo build --release
+cp target/release/alacritty $HOME/src/bin/
