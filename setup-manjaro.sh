@@ -42,7 +42,11 @@ sudo pacman -S \
   fontconfig \
   pkg-config \
   make \
-  xclip
+  xclip \
+  python-gobject \
+  python-xdg \
+  librsvg \
+  redshift
 
 yaourt -S \
   peek \
