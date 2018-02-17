@@ -51,7 +51,10 @@ sudo pacman -S \
 yaourt -S \
   peek \
   insync \
-  universal-ctags-git
+  universal-ctags-git \
+  flameshot \
+  noto-emoji-fonts \
+  corebird
 
 if [ ! -d $HOME/projects ]; then
   mkdir -p $HOME/projects
