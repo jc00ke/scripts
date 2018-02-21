@@ -46,7 +46,9 @@ sudo pacman -S \
   python-gobject \
   python-xdg \
   librsvg \
-  redshift
+  redshift \
+  maim \
+  rofi
 
 yaourt -S \
   peek \
@@ -54,7 +56,8 @@ yaourt -S \
   universal-ctags-git \
   flameshot \
   noto-emoji-fonts \
-  corebird
+  corebird \
+  xininfo-git
 
 if [ ! -d $HOME/projects ]; then
   mkdir -p $HOME/projects
@@ -126,3 +129,10 @@ git clone git@github.com:jwilm/alacritty.git                                    
 cd alacritty
 cargo build --release
 cp target/release/alacritty $HOME/src/bin/
+
+cd $HOME/src
+if [ ! -d $HOME/src/teiler ]; then
+  git clone git@github.com:carnager/teiler.git
+  sudo make install
+fi
+
