@@ -58,7 +58,8 @@ yaourt -S \
   flameshot \
   noto-emoji-fonts \
   corebird \
-  xininfo-git
+  xininfo-git \
+  exa-git
 
 if [ ! -d $HOME/projects ]; then
   mkdir -p $HOME/projects
