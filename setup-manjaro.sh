@@ -48,7 +48,8 @@ sudo pacman -S \
   librsvg \
   redshift \
   maim \
-  rofi
+  rofi \
+  ttf-hack
 
 yaourt -S \
   peek \
