@@ -49,7 +49,8 @@ sudo pacman -S \
   redshift \
   maim \
   rofi \
-  ttf-hack
+  ttf-hack \
+  diff-so-fancy
 
 yaourt -S \
   peek \
