@@ -60,7 +60,9 @@ yaourt -S \
   noto-emoji-fonts \
   corebird \
   xininfo-git \
-  exa-git
+  exa-git \
+  rofi-emoji \
+  xvkbd
 
 if [ ! -d $HOME/projects ]; then
   mkdir -p $HOME/projects
