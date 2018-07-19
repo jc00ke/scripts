@@ -62,7 +62,8 @@ yaourt -S \
   xininfo-git \
   exa-git \
   rofi-emoji \
-  xvkbd
+  xvkbd \
+  gif-for-cli
 
 if [ ! -d $HOME/projects ]; then
   mkdir -p $HOME/projects
