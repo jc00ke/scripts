@@ -85,6 +85,9 @@ cd $HOME
 rm -rf $HOME/.config/fish
 git clone git@github.com:jc00ke/fish-config.git "$HOME/.config/fish"
 
+rm -rf $HOME/.config/polybar
+git clone git@github.com:jc00ke/polybar-config.git "$HOME/.config/polybar"
+
 chsh -s /usr/bin/fish
 if [ ! -d "$HOME/.config/omf" ]; then
   cd $HOME/src
