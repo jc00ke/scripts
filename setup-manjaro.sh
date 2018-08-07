@@ -52,7 +52,10 @@ sudo pacman -S \
   ttf-hack \
   diff-so-fancy
 
-yaourt -S \
+yaourt -S yay-bin
+sudo pacman -R yaourt
+
+yay -S \
   peek \
   insync \
   universal-ctags-git \
