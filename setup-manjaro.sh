@@ -66,7 +66,9 @@ yay -S \
   exa-git \
   rofi-emoji \
   xvkbd \
-  gif-for-cli
+  gif-for-cli \
+  zoom \
+  direnv
 
 if [ ! -d $HOME/projects ]; then
   mkdir -p $HOME/projects
@@ -79,16 +81,6 @@ if [ ! -d $HOME/bin ]; then
 fi
 
 cd $HOME
-
-if [ -z "$(which direnv)" ]; then
-  cd $HOME/src
-  package="direnv.linux-amd64"
-  log "Install $package"
-  url=$(url_for_latest_release_from_github "zimbatm" "direnv" "$package")
-  wget "$url"
-  chmod +x $package
-  sudo mv $package /usr/local/bin/direnv
-fi
 
 rm -rf $HOME/.config/fish
 git clone git@github.com:jc00ke/fish-config.git "$HOME/.config/fish"
