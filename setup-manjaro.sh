@@ -140,3 +140,15 @@ if [ ! -d $HOME/src/teiler ]; then
   sudo make install
 fi
 
+
+cd $HOME/src
+rm -rf bat*
+bat_package="x86_64-unknown-linux-musl"
+bat_url="$(url_for_latest_release_from_github "sharkdp" "bat" "$bat_package")"
+wget "$bat_url"
+bat_archive="$(ls bat*)"
+mkdir bat
+tar xf "$bat_archive" -C bat --strip-components=1
+sudo mv bat/bat /usr/local/bin/
+sudo mv bat/bat.1 /usr/local/man/man1/
+sudo mandb
