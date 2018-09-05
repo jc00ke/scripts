@@ -159,3 +159,12 @@ miniserve_package="miniserve-linux"
 miniserve_url="$(url_for_latest_release_from_github "svenstaro" "miniserve" "$miniserve_package")"
 chmod +x "$miniserve_package"
 sudo mv "$miniserve_package" /usr/local/bin/miniserve
+
+cd $HOME/src
+ngrok_version="4VmDzA7iaHb"
+ngrok_package="ngrok-stable-linux-amd64"
+ngrok_archive="$ngrok_package.zip"
+wget "https://bin.equinox.io/c/$ngrok_version/$ngrok_archive"
+unzip "$ngrok_archive"
+chmod +x ngrok
+sudo mv ngrok /usr/local/bin/
