@@ -152,3 +152,10 @@ tar xf "$bat_archive" -C bat --strip-components=1
 sudo mv bat/bat /usr/local/bin/
 sudo mv bat/bat.1 /usr/local/man/man1/
 sudo mandb
+
+cd $HOME/src
+rm -rf miniserve*
+miniserve_package="miniserve-linux"
+miniserve_url="$(url_for_latest_release_from_github "svenstaro" "miniserve" "$miniserve_package")"
+chmod +x "$miniserve_package"
+sudo mv "$miniserve_package" /usr/local/bin/miniserve
