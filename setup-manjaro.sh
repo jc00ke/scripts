@@ -82,9 +82,6 @@ cd $HOME
 rm -rf $HOME/.config/fish
 git clone git@github.com:jc00ke/fish-config.git "$HOME/.config/fish"
 
-rm -rf $HOME/.config/polybar
-git clone git@github.com:jc00ke/polybar-config.git "$HOME/.config/polybar"
-
 chsh -s /usr/bin/fish
 if [ ! -d "$HOME/.config/omf" ]; then
   cd $HOME/src
@@ -130,6 +127,12 @@ git clone git@github.com:jwilm/alacritty.git                                    
 cd alacritty
 cargo build --release
 cp target/release/alacritty $HOME/src/bin/
+
+cd $HOME/src
+git clone https://github.com/greshake/i3status-rust
+cd i3status-rs
+cargo build --release
+cp target/release/i3status-rs $HOME/src/bin/
 
 cd $HOME/src
 if [ ! -d $HOME/src/teiler ]; then
