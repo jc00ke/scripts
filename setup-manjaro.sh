@@ -61,13 +61,10 @@ yay -S \
   universal-ctags-git \
   flameshot \
   noto-emoji-fonts \
-  corebird \
   xininfo-git \
-  exa-git \
   rofi-emoji \
   xvkbd \
   gif-for-cli \
-  zoom \
   direnv
 
 if [ ! -d $HOME/projects ]; then
