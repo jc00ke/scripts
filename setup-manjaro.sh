@@ -161,6 +161,17 @@ chmod +x "$miniserve_package"
 sudo mv "$miniserve_package" /usr/local/bin/miniserve
 
 cd $HOME/src
+rm -rf lsd*
+lsd_package="x86_64-unknown-linux-gnu"
+lsd_url="$(url_for_latest_release_from_github "Peltoche" "lsd" "$lsd_package")"
+wget "$lsd_url"
+lsd_archive="$(ls lsd*)"
+mkdir lsdeluxe
+tar xf "$lsd_archive" -C lsdeluxe --strip-components=1
+sudo mv lsdeluxe/lsd /usr/local/bin/
+sudo mv lsdeluxe/autocomplete/lsd.fish /usr/share/fish/vendor_completions.d/
+
+cd $HOME/src
 ngrok_package="ngrok-stable-linux-amd64"
 ngrok_archive="$ngrok_package.zip"
 wget "https://bin.equinox.io/c/4VmDzA7iaHb/$ngrok_archive"
