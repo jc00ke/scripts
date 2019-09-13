@@ -62,7 +62,8 @@ sudo apt-get install -y \
   peek \
   jq \
   ripgrep \
-  direnv
+  direnv \
+  ubuntu-restricted-extras
 
 if [ ! -d $HOME/projects ]; then
   mkdir -p $HOME/projects
