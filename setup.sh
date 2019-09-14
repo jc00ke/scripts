@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 function log {
   msg="$1"
   echo "********************************************"
@@ -8,19 +7,15 @@ function log {
   echo "********************************************"
   echo ""
 }
+
+sudo add-apt-repository ppa:alessandro-strada/ppa
+sudo apt update
+sudo apt install google-drive-ocamlfuse
+
 if [ ! -d "$HOME/.ssh" ]; then
   log "You need SSH keys or this isn't gonna do much"
   exit 42
 fi
-
-function add_ppa {
-  ppa="$1"
-  package="$2"
-  log "Adding $ppa for $package"
-  sudo sh -c "add-apt-repository -y ppa:$ppa"
-}
-
-sudo apt-get update
 
 sudo apt-get install -y \
   build-essential \
@@ -58,7 +53,9 @@ sudo apt-get install -y \
   jq \
   ripgrep \
   direnv \
-  ubuntu-restricted-extras
+  ubuntu-restricted-extras \
+  neovim \
+  fzf
 
 if [ ! -d $HOME/projects ]; then
   mkdir -p $HOME/projects
@@ -81,7 +78,7 @@ fi
 
 cd $HOME
 if [ ! -d $HOME/.asdf ]; then
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.4.1
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.4
   mkdir -p ~/.config/fish/completions; and cp ~/.asdf/completions/asdf.fish ~/.config/fish/completions
 fi
 
@@ -92,8 +89,7 @@ fi
 for file in $HOME/projects/dotfiles/*
 do
   name="$(basename $file)"
-  rm -f ".$name"
-  ln -s "$HOME/projects/dotfiles/$name" "$HOME/.$name"
+  ln -sf "$HOME/projects/dotfiles/$name" "$HOME/.$name"
 done
 
 cd $HOME
