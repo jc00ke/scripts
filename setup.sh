@@ -12,9 +12,6 @@ if [ ! -d "$HOME/.ssh" ]; then
   log "You need SSH keys or this isn't gonna do much"
   exit 42
 fi
-ssh-agent -s
-ssh-add $HOME/.ssh/id_rsa
-ssh-add $HOME/.ssh/id_ed25519
 
 function add_ppa {
   ppa="$1"
@@ -22,8 +19,6 @@ function add_ppa {
   log "Adding $ppa for $package"
   sudo sh -c "add-apt-repository -y ppa:$ppa"
 }
-
-#add_ppa "kgilmer" "regolith-stable"
 
 sudo apt-get update
 
@@ -71,17 +66,6 @@ fi
 if [ ! -d $HOME/src ]; then
   mkdir -p $HOME/src
 fi
-
-# sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
-# sudo update-alternatives --config vi
-# sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
-# sudo update-alternatives --config vim
-# sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
-# sudo update-alternatives --config editor
-
-log "Swap Command & Alt on Apple keyboards"
-echo options hid_apple swap_opt_cmd=1 | sudo tee -a /etc/modprobe.d/hid_apple.conf
-sudo update-initramfs -u -k all
 
 cd $HOME
 
