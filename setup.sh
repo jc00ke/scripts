@@ -8,12 +8,9 @@ function log {
   echo ""
 }
 
-sudo add-apt-repository ppa:alessandro-strada/ppa
-sudo apt update
-sudo apt install google-drive-ocamlfuse
-
 if [ ! -d "$HOME/.ssh" ]; then
   log "You need SSH keys or this isn't gonna do much"
+  log "Go install Keybase"
   exit 42
 fi
 
