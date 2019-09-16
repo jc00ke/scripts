@@ -52,7 +52,8 @@ sudo apt-get install -y \
   direnv \
   ubuntu-restricted-extras \
   neovim \
-  fzf
+  fzf \
+  inotify-tools
 
 if [ ! -d $HOME/projects ]; then
   mkdir -p $HOME/projects
