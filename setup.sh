@@ -90,6 +90,9 @@ do
   ln -sf "$HOME/projects/dotfiles/$name" "$HOME/.$name"
 done
 
+rm "$HOME/i3config.conf"
+ln -sf "$HOME/projects/dotfiles/i3config.conf" "$HOME/.config/regolith/i3/config"
+
 cd $HOME
 rm -f $HOME/.vimrc
 
